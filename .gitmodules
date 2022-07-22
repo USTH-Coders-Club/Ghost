@@ -3,4 +3,4 @@
 	url = https://github.com/TryGhost/Casper/
 [submodule "ghost/core/core/admin"]
 	path = ghost/core/core/admin
-	url = https://github.com/TryGhost/Admin/
+	url = https://github.com/USTH-Coders-Club/Admin

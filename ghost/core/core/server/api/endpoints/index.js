@@ -43,7 +43,7 @@ module.exports = {
     get reportcache(){
         return shared.pipeline(require('./reportcache'), localUtils);
     },
-    get reportcurl(){
+    get reporturl(){
         return shared.pipeline(require('./reporturl'), localUtils);
     },
 

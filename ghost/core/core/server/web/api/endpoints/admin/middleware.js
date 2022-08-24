@@ -22,6 +22,7 @@ const notImplemented = function (req, res, next) {
         pages: ['GET', 'PUT', 'DELETE', 'POST'],
         images: ['POST'],
         reportcache:['GET','POST','DELETE'],
+        reporturl:['GET','POST','DELETE'],
         webhooks: ['POST', 'PUT', 'DELETE'],
         // @NOTE: experimental
         actions: ['GET'],

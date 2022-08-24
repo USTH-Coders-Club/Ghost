@@ -40,6 +40,9 @@ module.exports = {
     get redirects() {
         return shared.pipeline(require('./redirects'), localUtils);
     },
+     get reportcache(){
+        return shared.pipeline(require('./reportcache'), localUtils);
+    },
 
     get roles() {
         return shared.pipeline(require('./roles'), localUtils);

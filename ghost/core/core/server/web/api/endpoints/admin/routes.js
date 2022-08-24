@@ -30,6 +30,10 @@ module.exports = function apiRoutes() {
     router.get('/posts/slug/:slug', mw.authAdminApi, http(api.posts.read));
     router.put('/posts/:id', mw.authAdminApi, http(api.posts.edit));
     router.del('/posts/:id', mw.authAdminApi, http(api.posts.destroy));
+    
+    router.get('/reportcache', mw.authAdminApi, http(api.reportcache.browse));
+    router.post('/reportcache', mw.authAdminApi, http(api.reportcache.add));
+    router.del('/reportcache/:id', mw.authAdminApi, http(api.reportcache.destroy));
 
     router.put('/comments/:id', mw.authAdminApi, http(api.comments.edit));
 

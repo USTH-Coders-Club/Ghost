@@ -772,5 +772,20 @@ module.exports = {
         reason: {type: 'text', maxlength: 65535, nullable: false},
         created_at: {type: 'dateTime', nullable: false},
         updated_at: {type: 'dateTime', nullable: false}
+    },
+    report_cache :{
+        id: {type: 'string', maxlength: 24, nullable: false, primary: true},
+        title: {type: 'string', maxlength: 191, nullable: false},
+        report_link :{type: 'string', maxlength: 191, nullable: false},
+        type:{type: 'string', maxlength: 50, nullable: false},
+        content:{type: 'text', maxlength: 1000000000, fieldtype: 'long', nullable: false},
+        created_date :{type: 'dateTime', nullable: false},
+    },
+    report_url:{
+        id:{type: 'string', maxlength: 24, nullable: false, primary: true},
+        url:{type: 'string', maxlength: 191, nullable: false},
+        type:{type: 'string', maxlength: 50, nullable: false},
+        level:{type: 'string', maxlength: 50, nullable: false},
+        created:{type: 'dateTime', nullable: false},
     }
 };

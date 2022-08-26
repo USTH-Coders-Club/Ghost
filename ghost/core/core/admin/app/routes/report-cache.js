@@ -75,6 +75,16 @@ export default class ReportCacheRoute extends AuthenticatedRoute {
 
         return this.infinity.model(this.modelName, paginationSettings);
     }
+    @action
+    queryParamsDidChange() {
+        // scroll back to the top
+        let contentList = document.querySelector('.content-list');
+        if (contentList) {
+            contentList.scrollTop = 0;
+        }
+
+        super.actions.queryParamsDidChange.call(this, ...arguments);
+    }
     setupController(controller) {
         super.setupController(...arguments);
 

@@ -4,20 +4,18 @@ import {assign} from '@ember/polyfills';
 import {isBlank} from '@ember/utils';
 import {inject as service} from '@ember/service';
 
-export default class PostsRoute extends AuthenticatedRoute {
+export default class ReportCacheRoute extends AuthenticatedRoute {
     @service infinity;
     @service router;
 
     queryParams = {
         type: {refreshModel: true},
-        visibility: {refreshModel: true},
-        access: {refreshModel: true},
-        author: {refreshModel: true},
-        tag: {refreshModel: true},
+        access: {refreshModel: true},        
         order: {refreshModel: true}
     };
 
-    modelName = 'post';
+
+    modelName = 'report-cache';
     perPage = 30;
 
     constructor() {
@@ -28,7 +26,7 @@ export default class PostsRoute extends AuthenticatedRoute {
         // browser history entry
         // see https://github.com/TryGhost/Ghost/issues/11057
         this.router.on('routeWillChange', (transition) => {
-            if (transition.to && (this.routeName === 'posts' || this.routeName === 'pages')) {
+            if (transition.to && (this.routeName === 'report-cache')) {
                 let toThisRoute = transition.to.find(route => route.name === this.routeName);
                 if (transition.from && transition.from.name === this.routeName && toThisRoute) {
                     transition.method('replace');
@@ -77,62 +75,33 @@ export default class PostsRoute extends AuthenticatedRoute {
 
         return this.infinity.model(this.modelName, paginationSettings);
     }
-
-    // trigger a background load of all tags, authors, and snipps for use in filter dropdowns and card menu
     setupController(controller) {
         super.setupController(...arguments);
-
-        if (!controller._hasLoadedTags) {
-            this.store.query('tag', {limit: 'all'}).then(() => {
-                controller._hasLoadedTags = true;
-            });
-        }
 
         if (!this.session.user.isAuthorOrContributor && !controller._hasLoadedAuthors) {
             this.store.query('user', {limit: 'all'}).then(() => {
                 controller._hasLoadedAuthors = true;
             });
         }
-
-        if (!controller._hasLoadedSnippets) {
-            this.store.query('snippet', {limit: 'all'}).then(() => {
-                controller._hasLoadedSnippets = true;
-            });
-        }
     }
-
-    @action
-    queryParamsDidChange() {
-        // scroll back to the top
-        let contentList = document.querySelector('.content-list');
-        if (contentList) {
-            contentList.scrollTop = 0;
-        }
-
-        super.actions.queryParamsDidChange.call(this, ...arguments);
-    }
-
-    buildRouteInfoMetadata() {
-        return {
-            titleToken: 'Posts'
-        };
-    }
-
     _getTypeFilters(type) {
-        let status = '[draft,scheduled,published,sent]';
+        let status = '[lừa đảo,giả mạo ,nội dung xấu,chứa mã độc,khác]';
 
         switch (type) {
-        case 'draft':
-            status = 'draft';
+        case 'lừa đảo':
+            status = 'lừa đảo';
             break;
-        case 'published':
-            status = 'published';
+        case 'giả mạo':
+            status = 'nội dung xấu';
             break;
-        case 'scheduled':
-            status = 'scheduled';
+        case 'chứa mã đọc':
+            status = 'giả mạo';
             break;
-        case 'sent':
-            status = 'sent';
+        case 'chứa mã độc':
+            status = 'chứa mã độc';
+            break;
+        case 'khác':
+            status = 'khác';
             break;
         }
 
@@ -140,7 +109,6 @@ export default class PostsRoute extends AuthenticatedRoute {
             status
         };
     }
-
     _filterString(filter) {
         return Object.keys(filter).map((key) => {
             let value = filter[key];

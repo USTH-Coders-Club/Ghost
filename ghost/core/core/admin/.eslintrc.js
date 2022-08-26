@@ -8,21 +8,15 @@ module.exports = {
         allowImportExportEverywhere: false,
         ecmaFeatures: {
             globalReturn: false,
-            legacyDecorators: true,
-            jsx: true
+            legacyDecorators: true
         },
         requireConfigFile: false,
         babelOptions: {
-            plugins: [
-                '@babel/plugin-proposal-class-properties',
-                ['@babel/plugin-proposal-decorators', {legacy: true}],
-                'babel-plugin-transform-react-jsx'
-            ]
+            plugins: ['@babel/plugin-proposal-class-properties', ['@babel/plugin-proposal-decorators', {legacy: true}]]
         }
     },
     plugins: [
-        'ghost',
-        'react'
+        'ghost'
     ],
     extends: [
         'plugin:ghost/ember'
@@ -46,9 +40,6 @@ module.exports = {
 
         // disable linting of mixins until we migrate away
         'ghost/ember/no-mixins': 'off',
-        'ghost/ember/no-new-mixins': 'off',
-
-        'react/jsx-uses-react': 'error',
-        'react/jsx-uses-vars': 'error'
+        'ghost/ember/no-new-mixins': 'off'
     }
 };

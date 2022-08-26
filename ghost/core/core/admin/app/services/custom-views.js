@@ -75,7 +75,44 @@ const DEFAULT_VIEWS = [{
     filter: {
         type: 'published'
     }
-}].map((view) => {
+},
+{
+    route: 'report-cache',
+    name: 'báo cáo lừa đảo',
+    color: 'midgray',
+    filter:{
+        type:'lừa đảo'
+    }
+},{
+    route: 'report-cache',
+    name: 'báo cáo giả mạo',
+    color: 'midgray',
+    filter:{
+        type:'giả mạo'
+    }
+},{
+    route: 'report-cache',
+    name: 'báo cáo nội dung xấu',
+    color: 'midgray',
+    filter:{
+        type:'nội dung xấu'
+    }
+},{
+    route: 'report-cache',
+    name: 'báo cáo chứa mã độc',
+    color: 'midgray',
+    filter:{
+        type:'chứa mã độc'
+    }
+},{
+    route: 'report-cache',
+    name: 'báo cáo khác',
+    color: 'midgray',
+    filter:{
+        type:'khác'
+    }
+}
+].map((view) => {
     return CustomView.create(Object.assign({}, view, {isDefault: true}));
 });
 
@@ -192,7 +229,9 @@ export default class CustomViewsService extends Service {
     get availableColors() {
         return VIEW_COLORS;
     }
-
+    get forReportCache(){
+        return this.viewList.filter(view => view.route === 'report-cache');
+    }
     get forPosts() {
         return this.viewList.filter(view => view.route === 'posts');
     }

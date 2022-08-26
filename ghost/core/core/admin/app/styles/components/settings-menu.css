@@ -90,7 +90,6 @@
     overflow: auto;
     background-color: var(--white);
     opacity: 1;
-    z-index: 0;
 }
 
 .settings-menu-container-wide .settings-menu-pane {
@@ -258,7 +257,6 @@
 .settings-menu-content textarea.gh-input {
     font-size: 1.5rem;
     line-height: 1.4em;
-    letter-spacing: 0;
 }
 
 .settings-menu-content .gh-cm-editor-textarea {
@@ -318,7 +316,6 @@
 .post-setting-custom-excerpt {
     font-size: 1.5rem;
     line-height: 1.35em;
-    letter-spacing: 0;
 }
 
 .settings-menu-content .gh-seo-preview-title {

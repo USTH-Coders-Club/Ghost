@@ -7,11 +7,10 @@ export default function parseMemberEvent(event, hasMultipleNewsletters) {
     let action = getAction(event);
     let object = getObject(event, hasMultipleNewsletters);
     let info = getInfo(event);
-    const url = getURL(event);
     let timestamp = moment(event.data.created_at);
 
     return {
-        memberId: event.data.member_id ?? event.data.member?.id,
+        memberId: event.data.member_id,
         member: event.data.member,
         emailId: event.data.email_id,
         email: event.data.email,
@@ -20,7 +19,6 @@ export default function parseMemberEvent(event, hasMultipleNewsletters) {
         action,
         object,
         info,
-        url,
         timestamp
     };
 }
@@ -68,10 +66,6 @@ function getIcon(event) {
 
     if (event.type === 'email_failed_event') {
         icon = 'email-delivery-failed';
-    }
-
-    if (event.type === 'comment_event') {
-        icon = 'comment';
     }
 
     return 'event-' + icon;
@@ -129,13 +123,6 @@ function getAction(event) {
     if (event.type === 'email_failed_event') {
         return 'failed to receive';
     }
-
-    if (event.type === 'comment_event') {
-        if (event.data.parent) {
-            return 'replied to a comment on';
-        }
-        return 'commented on';
-    }
 }
 
 function getObject(event, hasMultipleNewsletters) {
@@ -154,18 +141,6 @@ function getObject(event, hasMultipleNewsletters) {
         return 'an email';
     }
 
-    if (event.type === 'subscription_event') {
-        return 'their subscription';
-    }
-
-    if (event.type === 'comment_event') {
-        if (event.type === 'comment_event') {
-            if (event.data.post) {
-                return event.data.post.title;
-            }
-        }
-    }
-
     return '';
 }
 
@@ -178,25 +153,6 @@ function getInfo(event) {
         let sign = mrrDelta > 0 ? '+' : '-';
         let symbol = getSymbol(event.data.currency);
         return `(MRR ${sign}${symbol}${Math.abs(mrrDelta)})`;
-    }
-
-    // TODO: we can include the post title
-    /*if (event.type === 'comment_event') {
-        if (event.data.post) {
-            return event.data.post.title;
-        }
-    }*/
-    return;
-}
-
-/**
- * Make the object clickable
- */
-function getURL(event) {
-    if (event.type === 'comment_event') {
-        if (event.data.post) {
-            return event.data.post.url;
-        }
     }
     return;
 }

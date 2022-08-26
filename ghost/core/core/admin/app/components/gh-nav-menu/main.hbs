@@ -78,6 +78,49 @@
                             {{/if}}
                         {{/if}}
                     </li>
+                    <li class="gh-nav-list-new relative">
+                        <GhLinkToCustomViewsIndex @route="report-cache" @query={{reset-query-params "reportcache"}} data-test-nav="report-cache">{{svg-jar "posts"}}Report</GhLinkToCustomViewsIndex>                      
+                        {{#if this.session.user.isAuthorOrContributor}}
+                            {{#if this.customViews.forReportCache }}
+                                <ul class="gh-nav-view-list">
+                                    {{#each this.customViews.forReportCache as |view|}}
+                                        <li>
+                                            <LinkTo @route="report-cache" @query={{reset-query-params "reportcache" view.filter}} data-test-nav-custom="{{view.route}}-{{view.name}}" title="{{view.name}}">
+                                                <span class="gh-nav-viewname">{{view.name}}</span>
+                                                <span class="flex items-center svg-{{view.color}}">
+                                                    {{#unless view.icon}}
+                                                        <span class="absolute circle"></span>
+                                                    {{/unless}}
+                                                </span>
+                                            </LinkTo>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            {{/if}}
+                        {{else}}
+                            {{#if this.customViews.forReportCache}}
+                                <button type="button" class="gh-nav-button-expand {{if this.navigation.settings.expanded.report "expanded"}}" {{on "click" (fn this.navigation.toggleExpansion "report")}} aria-label="{{if this.navigation.settings.expanded.report "Collapse custom report types" "Expand custom report types"}}">
+                                    {{svg-jar (if this.navigation.settings.expanded.report "arrow-down-stroke" "arrow-right-stroke")}}
+                                </button>
+                                {{#liquid-if this.navigation.settings.expanded.report}}
+                                    <ul class="gh-nav-view-list">
+                                        {{#each this.customViews.forReportCache as |view|}}
+                                            <li>
+                                                <LinkTo @route="report-cache" @query={{reset-query-params "reportcache" view.filter}} data-test-nav-custom="{{view.route}}-{{view.name}}" title="{{view.name}}">
+                                                    <span class="gh-nav-viewname">{{view.name}}</span>
+                                                    <span class="flex items-center svg-{{view.color}}">
+                                                        {{#unless view.icon}}
+                                                            <span class="absolute circle"></span>
+                                                        {{/unless}}
+                                                    </span>
+                                                </LinkTo>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                {{/liquid-if}}
+                            {{/if}}
+                        {{/if}}
+                    </li>
                     <li>
                         {{!-- clicking the Content link whilst on the content screen should reset the filter --}}
                         {{#if (eq this.router.currentRouteName "pages")}}
@@ -152,4 +195,4 @@
         <GhNavMenu::Footer />
 
     </section>
-</div>
+</div>o

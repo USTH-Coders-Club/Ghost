@@ -21,11 +21,7 @@
                 <div class="gh-members-activity-event">
                     <span class="gh-members-activity-description">
                         {{capitalize-first-letter event.action}}
-                        {{#if event.url}}
-                            "<a class="ghost-members-activity-object-link" href="{{event.url}}" target="_blank" rel="noopener noreferrer">{{event.object}}</a>"
-                        {{else}}
-                            {{event.object}}
-                        {{/if}}
+                        {{event.object}}
                     </span>
                     {{#if event.email}}
                         "<GhEmailPreviewLink @data={{event.email}} />"

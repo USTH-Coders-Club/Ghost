@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import {action} from '@ember/object';
-import {inject as service} from '@ember/service';
 
 const ALL_EVENT_TYPES = [
     {event: 'signup_event', icon: 'event-filter-signup', name: 'Signups'},
@@ -14,19 +13,11 @@ const ALL_EVENT_TYPES = [
 ];
 
 export default class MembersActivityEventTypeFilter extends Component {
-    @service settings;
-    @service feature;
-
     get availableEventTypes() {
-        const extended = [...ALL_EVENT_TYPES];
-        if (this.feature.comments && this.settings.get('commentsEnabled') !== 'off') {
-            extended.push({event: 'comment_event', icon: 'event-comment', name: 'Comments'});
-        }
-
         if (this.args.hiddenEvents?.length) {
-            return extended.filter(t => !this.args.hiddenEvents.includes(t.event));
+            return ALL_EVENT_TYPES.filter(t => !this.args.hiddenEvents.includes(t.event));
         } else {
-            return extended;
+            return ALL_EVENT_TYPES;
         }
     }
 

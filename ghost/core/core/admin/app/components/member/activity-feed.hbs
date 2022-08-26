@@ -23,21 +23,14 @@
                                             </div>
                                             <div class="gh-member-feed-detail">
                                                 <div class="gh-member-feed-event">
-                                                    <span class="gh-member-feed-event-inner">
-                                                        <span class="gh-members-activity-description">
-                                                            {{capitalize-first-letter event.action}}
-                                                            {{#if event.url}}
-                                                                "<a class="ghost-members-activity-object-link" href="{{event.url}}" target="_blank" rel="noopener noreferrer">{{event.object}}</a>"
-                                                            {{else}}
-                                                                {{event.object}}
-                                                            {{/if}}
-                                                        </span>
-                                                        {{#if event.email}}
-                                                            "<GhEmailPreviewLink @data={{event.email}} />"
-                                                        {{/if}}
-                                                        {{event.info}}
-                                                        
+                                                    <span class="gh-members-activity-description">
+                                                        {{capitalize-first-letter event.action}}
+                                                        {{event.object}}
                                                     </span>
+                                                    {{#if event.email}}
+                                                        "<GhEmailPreviewLink @data={{event.email}} />"
+                                                    {{/if}}
+                                                    {{event.info}}
                                                 </div>
                                                 <div class="gh-member-feed-time">
                                                     {{moment-from-now event.timestamp}}

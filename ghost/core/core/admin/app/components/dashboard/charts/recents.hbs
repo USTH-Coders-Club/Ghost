@@ -91,27 +91,23 @@
                             {{#if eventsFetcher.data}}
                                 {{#each eventsFetcher.data as |event|}}
                                     {{#let (parse-member-event event eventsFetcher.hasMultipleNewsletters) as |parsedEvent|}}
-                                        <div class="gh-dashboard-list-item member-details">
+                                        <LinkTo class="gh-dashboard-list-item member-details" @route="member" @model="{{parsedEvent.memberId}}" data-test-dashboard-member-activity-item>
                                             <div class="gh-dashboard-list-item-sub">
                                                 <GhMemberAvatar @member={{parsedEvent.member}} @containerClass="w8 h8 mr3 flex-shrink-0" />
-                                                <LinkTo class="gh-dashboard-list-text" @route="member" @model="{{parsedEvent.memberId}}" data-test-dashboard-member-activity-item>{{parsedEvent.subject}}</LinkTo>
+                                                <span class="gh-dashboard-list-text">{{parsedEvent.subject}}</span>
                                             </div>
                                             <div class="gh-dashboard-list-item-sub">
                                                 {{svg-jar parsedEvent.icon}}
                                                 <span class="gh-dashboard-list-subtext">
                                                     {{capitalize-first-letter parsedEvent.action}}
-                                                    {{#if parsedEvent.url}}
-                                                        "<a class="ghost-members-activity-object-link" href="{{parsedEvent.url}}" target="_blank" rel="noopener noreferrer">{{parsedEvent.object}}</a>"
-                                                    {{else}}
-                                                         {{parsedEvent.object}}
-                                                    {{/if}}
+                                                    {{parsedEvent.object}}
                                                     {{parsedEvent.info}}
                                                 </span>
                                             </div>
                                             <div class="gh-dashboard-list-item-sub">
                                                 <span class="gh-dashboard-list-subtext">{{moment-format parsedEvent.timestamp "DD MMM YYYY HH:mm"}}</span>
                                             </div>
-                                        </div>
+                                        </LinkTo>
                                     {{/let}}
                                 {{/each}}
                             {{else}}

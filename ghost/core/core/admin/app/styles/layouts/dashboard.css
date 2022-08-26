@@ -47,7 +47,6 @@ Dashboard Layout */
 
 .gh-dashboard-title h4 {
     font-size: 1.5rem;
-    letter-spacing: 0;
     font-weight: 600;
     color: var(--black);
     margin: 0;
@@ -340,7 +339,6 @@ Dashboard Layout */
 
 .gh-dashboard-select-title .ember-power-select-selected-item {
     font-size: 1.5rem;
-    letter-spacing: 0;
     font-weight: 700;
     line-height: 1em;
     margin: 0;
@@ -493,7 +491,6 @@ Dashboard Percentage */
     flex: 0;
     border-radius: 3px;
     font-size: 1.5rem;
-    letter-spacing: 0;
     line-height: 1;
     font-weight: 500;
     letter-spacing: 0;
@@ -606,7 +603,6 @@ Dashboard Metric */
 
 .gh-dashboard-metric-minivalue {
     font-size: 1.5rem;
-    letter-spacing: 0;
     font-weight: 700;
     color: var(--darkgrey);
     text-decoration: none;
@@ -652,7 +648,7 @@ Dashboard List */
     white-space: nowrap;
     font-size: 1.1rem;
     font-weight: 500;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.1px;
     color: var(--midgrey);
     padding: 0 20px 8px 0;
     text-transform: uppercase;
@@ -692,7 +688,6 @@ Dashboard List */
 .gh-dashboard-list-text {
     font-weight: 600;
     font-size: 1.5rem;
-    letter-spacing: 0;
     color: var(--darkgrey);
     padding: 0 32px 0 0;
     text-decoration: none;
@@ -711,11 +706,6 @@ Dashboard List */
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-}
-
-.gh-dashboard-list-subtext > a {
-    color: var(--black);
-    font-weight: 600;
 }
 
 .gh-dashboard-list-item svg {
@@ -1189,7 +1179,7 @@ Dashboard Recents */
 
 .gh-dashboard-recents-activity .gh-dashboard-list-header,
 .gh-dashboard-recents-activity .gh-dashboard-list-item {
-    grid-template-columns: 30% 40% 30%;
+    grid-template-columns: 35% 35% 30%;
 }
 
 .gh-dashboard-recents-activity .gh-dashboard-list-title:nth-child(2),
@@ -1417,7 +1407,6 @@ Dashboard Community */
     margin-bottom: 0;
     transition: color .3s;
     color: #fff;
-    letter-spacing: -0.02em;
 }
 
 .gh-dashboard-community .gh-dashboard-resource-footer {
@@ -1597,7 +1586,6 @@ Dashboard Resource */
 
 .gh-dashboard-resource-bigarticle p {
     font-size: 1.5rem;
-    letter-spacing: 0;
     color: var(--middarkgrey);
     display: -webkit-box;
     line-clamp: 3;
@@ -1762,7 +1750,6 @@ Dashboard Tooltips */
     display: flex;
     align-items: baseline;
     font-size: 1.5rem;
-    letter-spacing: 0;
     font-weight: 700;
     letter-spacing: 0;
     line-height: 1em;
@@ -1790,7 +1777,6 @@ Dashboard Tooltips */
 
 .gh-dashboard-tooltip-value .value {
     font-size: 1.5rem;
-    letter-spacing: 0;
     margin-right: 8px;
 }
 

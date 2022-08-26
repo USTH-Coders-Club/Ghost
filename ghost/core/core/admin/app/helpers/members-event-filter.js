@@ -9,7 +9,6 @@ export const NEWSLETTER_EVENTS = ['newsletter_event'];
 @classic
 export default class MembersEventFilter extends Helper {
     @service settings;
-    @service feature;
 
     compute(
         positionalParams,
@@ -19,9 +18,6 @@ export default class MembersEventFilter extends Helper {
 
         if (this.settings.get('editorDefaultEmailRecipients') === 'disabled') {
             [...EMAIL_EVENTS, ...NEWSLETTER_EVENTS].forEach(type => excludedEventsSet.add(type));
-        }
-        if (!this.feature.comments || this.settings.get('commentsEnabled') === 'off') {
-            excludedEventsSet.add('comment_event');
         }
 
         if (excludeEmailEvents) {

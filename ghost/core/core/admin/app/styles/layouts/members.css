@@ -977,7 +977,6 @@ textarea.gh-member-details-textarea {
 
 .gh-members-no-data h4 {
     font-size: 1.5rem;
-    letter-spacing: 0;
     font-weight: 600;
     color: var(--middarkgrey);
 }
@@ -1131,7 +1130,6 @@ textarea.gh-member-details-textarea {
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
-    width: 0;
 }
 
 @media (max-width: 600px) {
@@ -1141,24 +1139,13 @@ textarea.gh-member-details-textarea {
 }
 
 .gh-member-feed-event {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.gh-member-feed-event-inner {
+    display: inline-block;
     color: var(--middarkgrey);
     font-weight: 500;
-    text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden; 
-    padding-right: 1rem;
 }
 
-.gh-member-feed-event-inner:first-letter {
+.gh-member-feed-event:first-letter {
     text-transform: uppercase;
 }
 
@@ -1183,7 +1170,6 @@ textarea.gh-member-details-textarea {
     font-weight: 400;
     font-size: 13px;
     color: var(--midgrey);
-    white-space: nowrap;
 }
 
 .gh-member-feed-footer {
@@ -1549,7 +1535,6 @@ p.gh-members-import-errordetail:first-of-type {
 
 .gh-member-import-result-summary p strong {
     font-size: 1.5rem;
-    letter-spacing: 0;
 }
 
 .gh-member-import-errorlist {
@@ -1838,7 +1823,6 @@ p.gh-members-import-errordetail:first-of-type {
 
 .gh-members-emailpreview-faux .strong {
     font-size: 1.5rem;
-    letter-spacing: 0;
     font-weight: 500;
     color: var(--darkgrey);
 }
@@ -1971,7 +1955,7 @@ p.gh-members-import-errordetail:first-of-type {
 }
 
 .gh-members-emailpreview-content.sans-serif p {
-    font-family: var(--font-family);
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;
     font-size: 1.75rem;
     line-height: 1.5em;
 }
@@ -2035,7 +2019,7 @@ p.gh-members-import-errordetail:first-of-type {
     font-size: 12.5px;
     line-height: 12px;
     letter-spacing: -.3px;
-    font-family: var(--font-family);
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
     font-weight: 600;
     text-decoration: none;
     color: #383838;

@@ -5,7 +5,8 @@ import {tracked} from '@glimmer/tracking';
 
 const DEFAULT_SETTINGS = {
     expanded: {
-        posts: true
+        posts: true,
+        report: true
     }
 };
 

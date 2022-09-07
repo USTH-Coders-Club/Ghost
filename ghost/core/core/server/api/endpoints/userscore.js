@@ -1,11 +1,11 @@
 const tpl = require('@tryghost/tpl');
 const errors = require('@tryghost/errors');
 const models = require('../../models');
-const allowedIncludes = ['id','url','type','level','created'];
+const allowedIncludes = ['id','email','score'];
 
 
 module.exports = {
-    docName: 'reporturl',
+    docName: 'userscore',
     browse:{
         options: [
         'include'
@@ -19,7 +19,7 @@ module.exports = {
     },
     permissions: false,
         query(frame) {
-            return models.ReportUrl.findAll(frame.options);
+            return models.UserScore.findAll(frame.options);
             }
     },
     destroy:{
@@ -41,9 +41,9 @@ module.exports = {
         query(frame) {
             frame.options.require = true;
 
-            return models.ReportUrl.destroy(frame.options)
+            return models.UserScore.destroy(frame.options)
             .then(() => null) // console error message if not found
-            .catch(models.ReportUrl.NotFoundError, () => {
+            .catch(models.UserScore.NotFoundError, () => {
                 return Promise.reject(new errors.NotFoundError({
                     message: tpl(messages.reporturlNotFound)}
                  ))}
@@ -66,9 +66,30 @@ module.exports = {
         permissions:false
         ,
         query(frame) {
-            return models.ReportUrl.add(frame.data.reporturl[0], frame.options);
+            return models.UserScore.add(frame.data.usercore[0], frame.options);
         }
 
+    },
+    edit:{
+        header:{},
+        options: [
+            'include',
+            'id'
+        ],
+        validation: {
+            options: {
+                include: {
+                    values: allowedIncludes
+                },
+                id: {
+                    required: true
+                }
+            }
+        },
+        permissions:false,
+        async query(frame) {
+            return models.UserScore.edit(frame.data.usercore[0], frame.options);
+        }
     }
 
     }

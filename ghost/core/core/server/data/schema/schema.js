@@ -775,17 +775,15 @@ module.exports = {
     },
     report_cache :{
         id: {type: 'string', maxlength: 24, nullable: false, primary: true},
-        title: {type: 'string', maxlength: 191, nullable: false},
         report_link :{type: 'string', maxlength: 191, nullable: false},
-        type:{type: 'string', maxlength: 50, nullable: false},
-        content:{type: 'text', maxlength: 1000000000, fieldtype: 'long', nullable: false},
+        type:{type: 'string', maxlength: 191, nullable: false},
+        content:{type: 'text', maxlength: 1000000000, fieldtype: 'long', nullable: true},
+        country:{type: 'string', maxlength: 50, nullable: true},
         created_date :{type: 'dateTime', nullable: false},
     },
-    report_url:{
+    user_score:{
         id:{type: 'string', maxlength: 24, nullable: false, primary: true},
-        url:{type: 'string', maxlength: 191, nullable: false},
-        type:{type: 'string', maxlength: 50, nullable: false},
-        level:{type: 'string', maxlength: 50, nullable: false},
-        created:{type: 'dateTime', nullable: false},
+        email:{type: 'string', maxlength: 191, nullable: false},
+        score:{type: 'integer', nullable: false},        
     }
 };

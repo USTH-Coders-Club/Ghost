@@ -66,7 +66,7 @@ module.exports = {
         permissions:false
         ,
         query(frame) {
-            return models.UserScore.add(frame.data.usercore[0], frame.options);
+            return models.UserScore.add(frame.data.userscore[0], frame.options);
         }
 
     },

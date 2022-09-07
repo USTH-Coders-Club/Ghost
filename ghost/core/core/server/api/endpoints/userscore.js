@@ -92,7 +92,9 @@ module.exports = {
     },
     read: {
         options: [
-            'include'
+            'include',
+            'fields',
+
         ],
         data: [
             'id',

@@ -8,7 +8,11 @@ module.exports = {
     docName: 'reportcache',
     browse:{
         options: [
-        'include'
+        'include',   
+        'order',
+        'fields',
+        'limit',
+        'page'
     ],
     validation: {
         options: {
@@ -69,6 +73,53 @@ module.exports = {
             return models.ReportCache.add(frame.data.reportcache[0], frame.options);
         }
 
+    },
+    edit:{
+        header:{},
+        options: [
+            'include',
+            'id'
+        ],
+        validation: {
+            options: {
+                include: {
+                    values: allowedIncludes
+                },
+                id: {
+                    required: true
+                }
+            }
+        },
+        permissions:false,
+        async query(frame) {
+            return models.ReportCache.edit(frame.data.reportcache[0], frame.options);
+        }
+    },
+    read: {
+        options: [
+            'include',
+            'fields'
+        ],
+        data: [
+            'id'
+        ],
+        validation: {
+            options: {
+                include: {
+                    values: allowedIncludes
+                }
+            }
+        },
+        permissions : false,
+        query(frame) {
+            return models.ReportCache.findOne(frame.data, frame.options)
+                .then((model) => {
+                    if (!model) {
+                        throw new errors.NotFoundError();
+                    }
+                    return model;
+                });
+        }
     }
 
     }

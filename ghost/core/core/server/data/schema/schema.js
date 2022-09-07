@@ -783,7 +783,7 @@ module.exports = {
     },
     user_score:{
         id:{type: 'string', maxlength: 24, nullable: false, primary: true},
-        email:{type: 'string', maxlength: 191, nullable: false},
+        email:{type: 'string', maxlength: 191, nullable: false,unique:true},
         score:{type: 'integer', nullable: false},        
     }
 };

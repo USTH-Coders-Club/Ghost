@@ -40,12 +40,10 @@ module.exports = {
         permissions:false,
         query(frame) {
             frame.options.require = true;
-
             return models.UserScore.destroy(frame.options)
             .then(() => null) // console error message if not found
             .catch(models.UserScore.NotFoundError, () => {
-                return Promise.reject(new errors.NotFoundError({
-                    message: tpl(messages.reporturlNotFound)}
+                return Promise.reject(new errors.NotFoundError(
                  ))}
                  );
          }
@@ -90,8 +88,33 @@ module.exports = {
         async query(frame) {
             return models.UserScore.edit(frame.data.usercore[0], frame.options);
         }
+    },
+    read: {
+        options: [
+            'include'
+        ],
+        data: [
+            'id',
+            'email'
+        ],
+        validation: {
+            options: {
+                include: {
+                    values: allowedIncludes
+                }
+            }
+        },
+        permissions : false,
+        
+        query(frame) {
+            return models.UserScore.findOne(frame.data, frame.options)
+                .then((model) => {
+                    if (!model) {
+                        throw new errors.NotFoundError();
+                    }
+                    return model;
+                });
+        }
     }
-
-    }
-
+}
 

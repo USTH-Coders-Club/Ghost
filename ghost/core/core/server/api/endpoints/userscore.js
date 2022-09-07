@@ -8,7 +8,8 @@ module.exports = {
     docName: 'userscore',
     browse:{
         options: [
-        'include'
+        'include',
+        'order'
     ],
     validation: {
         options: {
@@ -19,7 +20,7 @@ module.exports = {
     },
     permissions: false,
         query(frame) {
-            return models.UserScore.findAll(frame.options);
+            return models.UserScore.findPage(frame.options);
             }
     },
     destroy:{
@@ -86,7 +87,7 @@ module.exports = {
         },
         permissions:false,
         async query(frame) {
-            return models.UserScore.edit(frame.data.usercore[0], frame.options);
+            return models.UserScore.edit(frame.data.userscore[0], frame.options);
         }
     },
     read: {

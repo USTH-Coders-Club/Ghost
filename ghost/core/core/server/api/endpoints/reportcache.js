@@ -19,7 +19,7 @@ module.exports = {
     },
     permissions: false,
         query(frame) {
-            return models.ReportCache.findAll(frame.options);
+            return models.ReportCache.findPage(frame.options);
             }
     },
     destroy:{

@@ -21,7 +21,7 @@ const notImplemented = function (req, res, next) {
         posts: ['GET', 'PUT', 'DELETE', 'POST'],
         pages: ['GET', 'PUT', 'DELETE', 'POST'],
         images: ['POST'],
-        reportcache:['GET','POST','DELETE'],
+        report_caches: ['GET','POST','DELETE'],
         userscore:['GET','POST','DELETE','PUT'],
         webhooks: ['POST', 'PUT', 'DELETE'],
         // @NOTE: experimental

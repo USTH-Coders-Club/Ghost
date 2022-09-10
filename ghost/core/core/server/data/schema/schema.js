@@ -773,7 +773,7 @@ module.exports = {
         created_at: {type: 'dateTime', nullable: false},
         updated_at: {type: 'dateTime', nullable: false}
     },
-    report_cache :{
+    report_caches :{
         id: {type: 'string', maxlength: 24, nullable: false, primary: true},
         report_link :{type: 'string', maxlength: 191, nullable: false},
         type:{type: 'string', maxlength: 191, nullable: false},

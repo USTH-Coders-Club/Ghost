@@ -64,6 +64,7 @@ export default class SigninController extends Controller.extend(ValidationEngine
                 mainError.context = htmlSafe(mainError.context || '');
 
                 this.set('flowErrors', (mainError.context.string || mainError.message.string));
+                $('#login').find('input').trigger('change');
 
                 if (mainError.type === 'PasswordResetRequiredError') {
                     this.set('passwordResetEmailSent', true);

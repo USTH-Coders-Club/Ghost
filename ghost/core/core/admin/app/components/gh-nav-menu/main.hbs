@@ -79,13 +79,13 @@
                         {{/if}}
                     </li>
                     <li class="gh-nav-list-new relative">
-                        <GhLinkToCustomViewsIndex @route="report-cache" @query={{reset-query-params "reportcache"}} data-test-nav="report-cache">{{svg-jar "posts"}}Report</GhLinkToCustomViewsIndex>                      
+                        <GhLinkToCustomViewsIndex @route="report_caches" @query={{reset-query-params "report_caches"}} data-test-nav="report_caches">{{svg-jar "posts"}}Reports</GhLinkToCustomViewsIndex>                      
                         {{#if this.session.user.isAuthorOrContributor}}
                             {{#if this.customViews.forReportCache }}
                                 <ul class="gh-nav-view-list">
                                     {{#each this.customViews.forReportCache as |view|}}
                                         <li>
-                                            <LinkTo @route="report-cache" @query={{reset-query-params "reportcache" view.filter}} data-test-nav-custom="{{view.route}}-{{view.name}}" title="{{view.name}}">
+                                            <LinkTo @route="report_caches" @query={{reset-query-params "report_caches" view.filter}} data-test-nav-custom="{{view.route}}-{{view.name}}" title="{{view.name}}">
                                                 <span class="gh-nav-viewname">{{view.name}}</span>
                                                 <span class="flex items-center svg-{{view.color}}">
                                                     {{#unless view.icon}}
@@ -106,7 +106,7 @@
                                     <ul class="gh-nav-view-list">
                                         {{#each this.customViews.forReportCache as |view|}}
                                             <li>
-                                                <LinkTo @route="report-cache" @query={{reset-query-params "reportcache" view.filter}} data-test-nav-custom="{{view.route}}-{{view.name}}" title="{{view.name}}">
+                                                <LinkTo @route="report_caches" @query={{reset-query-params "report_caches" view.filter}} data-test-nav-custom="{{view.route}}-{{view.name}}" title="{{view.name}}">
                                                     <span class="gh-nav-viewname">{{view.name}}</span>
                                                     <span class="flex items-center svg-{{view.color}}">
                                                         {{#unless view.icon}}

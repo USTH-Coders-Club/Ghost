@@ -1,0 +1,15 @@
+<section class="gh-canvas">
+    <GhCanvasHeader class="gh-canvas-header break tablet report-header">
+        <GhCustomViewTitle @title={{if this.session.user.isContributor (concat this.config.blogTitle " Report") "Reports"}} @query={{reset-query-params "report_caches"}} />
+    
+        <section class="view-actions">
+            <!-- TODO: Create a component for sorting report cache query -->
+        </section>
+    </GhCanvasHeader>
+
+    <section class="view-container">
+        <p class="gh-box gh-box-tip">{{svg-jar "idea"}}Bạn có biết: Report endpoint sử dụng 5 từ khóa khác nhau?<br> - Ví dụ điển hình: report-cache, reportcache, ReportCache, report_cache, report_caches.<br>Lần sau đặt tên cho cẩn thận nhé :&#40;</p>
+    </section>
+    
+    {{outlet}}
+</section>

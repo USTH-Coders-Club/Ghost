@@ -6,20 +6,31 @@ import {alias} from '@ember/object/computed';
 import {inject as service} from '@ember/service';
 
 const TYPES = [{
-    name: 'báo cáo lừa đảo',
-    value: 'lừa đảo'
+    name: 'Tất cả',
+    value: null
 },{
-    name: 'báo cáo giả mạo',
-    value: 'giả mạo'
+    name: 'Lừa đảo',
+    value: 'scam'
 },{
-    name: 'báo cáo nội dung xấu',
-    value: 'nội dung xấu'
+    name: 'Giả mạo',
+    value: 'phishing'
 },{
-    name: 'báo cáo chứa mã đôc',
-    value: 'chứa mã độc'
+    name: 'Mạo danh',
+    value: 'impersonate_fake'
 },{
-    name: 'báo cáo khác',
-    value: 'khác'
+    name: 'Nội dung xấu',
+    value: 'bad_sensitive_content'
+},{
+    name: 'Chứa mã độc',
+    value: 'dangerous_link'
+},{
+    name: 'Khác',
+    value: 'other'
+}];
+
+const ACCESS = [{
+    name: 'Default',
+    value: null
 }];
 
 const ORDERS = [{
@@ -47,21 +58,46 @@ export default class ReportCacheController extends Controller {
     init() {
         super.init(...arguments);
         this.availableTypes = TYPES;
+        this.availableAccess = ACCESS;
         this.availableOrders = ORDERS;
         
-        this.setProperties(DEFAULT_QUERY_PARAMS.reportcache);
+        this.setProperties(DEFAULT_QUERY_PARAMS.report_caches);
     }
+
     @alias('model')
         reportcacheInfinityModel;
     
+
     @computed('type')
     get selectedType() {
         let types = this.availableTypes;
         return types.findBy('value', this.type) || {value: '!unknown'};
     }
+
+    @computed('type')
+    get selectedAccess() {
+        let accesses = this.availableAccess;
+        return accesses.findBy('value', this.type) || {value: '!unknown'};
+    }
+
     @computed('order')
     get selectedOrder() {
         let orders = this.availableOrders;
         return orders.findBy('value', this.order) || {value: '!unknown'};
+    }
+
+    @action
+    changeType(type) {
+        this.set('type', get(type, 'value'));
+    }
+
+    @action
+    changeAccess(access) {
+        this.set('access', get(access, 'value'));
+    }
+
+    @action
+    changeOrder(order) {
+        this.set('order', get(order, 'value'));
     }
 }

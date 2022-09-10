@@ -41,7 +41,7 @@ module.exports = {
         return shared.pipeline(require('./redirects'), localUtils);
     },
     get reportcache(){
-        return shared.pipeline(require('./reportcache'), localUtils);
+        return shared.pipeline(require('./report-caches'), localUtils);
     },
     get userscore(){
         return shared.pipeline(require('./userscore'), localUtils);

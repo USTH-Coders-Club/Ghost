@@ -95,7 +95,7 @@ Router.map(function () {
   this.route('error404', {path: '/*path'});
 
   this.route('designsandbox');
-  this.route('report-cache');
+  this.route('report_caches', {path: '/report-caches'});
 });
 
 export default Router;

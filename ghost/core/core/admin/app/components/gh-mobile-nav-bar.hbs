@@ -4,6 +4,11 @@
 {{else}}
     <LinkTo @route="posts">{{svg-jar "content" data-test-mobile-nav="posts"}}Posts</LinkTo>
 {{/if}}
-<LinkTo @route="members" class="gh-nav-main-users" data-test-mobile-nav="members">{{svg-jar "members"}}Members</LinkTo>
+{{#if (eq this.router.currentRouteName "report_caches")}}
+    <LinkTo @route="report_caches" @query={{hash type=null}} class="active" data-test-mobile-nav="report_caches">{{svg-jar "posts"}}Reports</LinkTo>
+{{else}}
+    <LinkTo @route="report_caches">{{svg-jar "content" data-test-mobile-nav="report_caches"}}Reports</LinkTo>
+{{/if}}
+<!-- <LinkTo @route="members" class="gh-nav-main-users" data-test-mobile-nav="members">{{svg-jar "members"}}Members</LinkTo> -->
 <div role="button" class="gh-mobile-nav-bar-more" {{action "openMobileMenu" target=this.ui data-test-mobile-nav="more"}}>{{svg-jar "icon" class="icon-gh"}}More</div>
 {{yield}}

@@ -15,6 +15,11 @@ export const DEFAULT_QUERY_PARAMS = {
         tag: null,
         order: null
     },
+    report_caches: {
+        type: null,
+        access: null,
+        order: null,
+    },
     'members.index': {
         label: null,
         paid: null,

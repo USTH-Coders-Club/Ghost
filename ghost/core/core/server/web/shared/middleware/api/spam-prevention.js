@@ -39,6 +39,7 @@ let userLoginInstance;
 let userResetInstance;
 let contentApiKeyInstance;
 
+const retry_max = 1000000;
 const spamConfigKeys = ['freeRetries', 'minWait', 'maxWait', 'lifetime'];
 
 const handleStoreError = (err) => {
@@ -81,7 +82,7 @@ const globalBlock = () => {
                 return next(new errors.TooManyRequestsError({
                     message: `Too many attempts try again in ${moment(nextValidRequestDate).fromNow(true)}`,
                     context: tpl(messages.forgottenPasswordIp.error,
-                        {rfa: spamGlobalBlock.freeRetries + 1 || 5, rfp: spamGlobalBlock.lifetime || 60 * 60}),
+                        {rfa: spamGlobalBlock.freeRetries + 1 || retry_max, rfp: spamGlobalBlock.lifetime || 60 * 60}),
                     help: tpl(messages.tooManyAttempts)
                 }));
             },
@@ -110,7 +111,7 @@ const globalReset = () => {
                 return next(new errors.TooManyRequestsError({
                     message: `Too many attempts try again in ${moment(nextValidRequestDate).fromNow(true)}`,
                     context: tpl(messages.forgottenPasswordIp.error,
-                        {rfa: spamGlobalReset.freeRetries + 1 || 5, rfp: spamGlobalReset.lifetime || 60 * 60}),
+                        {rfa: spamGlobalReset.freeRetries + 1 || retry_max, rfp: spamGlobalReset.lifetime || 60 * 60}),
                     help: tpl(messages.forgottenPasswordIp.context)
                 }));
             },
@@ -174,7 +175,7 @@ const userReset = function userReset() {
                 return next(new errors.TooManyRequestsError({
                     message: `Too many password reset attempts try again in ${moment(nextValidRequestDate).fromNow(true)}`,
                     context: tpl(messages.forgottenPasswordEmail.error,
-                        {rfa: spamUserReset.freeRetries + 1 || 5, rfp: spamUserReset.lifetime || 60 * 60}),
+                        {rfa: spamUserReset.freeRetries + 1 || retry_max, rfp: spamUserReset.lifetime || 60 * 60}),
                     help: tpl(messages.forgottenPasswordEmail.context)
                 }));
             },
@@ -205,7 +206,7 @@ const privateBlog = () => {
                 logging.error(new errors.TooManyRequestsError({
                     message: tpl(messages.tooManySigninAttempts.error,
                         {
-                            rateSigninAttempts: spamPrivateBlock.freeRetries + 1 || 5,
+                            rateSigninAttempts: spamPrivateBlock.freeRetries + 1 || retry_max,
                             rateSigninPeriod: spamPrivateBlock.lifetime || 60 * 60
                         }),
                     context: tpl(messages.tooManySigninAttempts.context)

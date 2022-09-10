@@ -5,7 +5,7 @@ const allowedIncludes = ['id','title','report_link','type','content','created_da
 
 
 module.exports = {
-    docName: 'reportcache',
+    docName: 'report_caches',
     browse:{
         options: [
         'include',   
@@ -51,7 +51,7 @@ module.exports = {
                 return Promise.reject(new errors.NotFoundError({
                     message: tpl(messages.reportcacheNotFound)}
                  ))}
-                 );
+            );
          }
     },
     add:{

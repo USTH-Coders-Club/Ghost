@@ -77,39 +77,46 @@ const DEFAULT_VIEWS = [{
     }
 },
 {
-    route: 'report-cache',
-    name: 'báo cáo lừa đảo',
+    route: 'report_caches',
+    name: 'Lừa đảo',
     color: 'midgray',
     filter:{
-        type:'lừa đảo'
+        type:'scam'
     }
 },{
-    route: 'report-cache',
-    name: 'báo cáo giả mạo',
+    route: 'report_caches',
+    name: 'Giả mạo',
     color: 'midgray',
     filter:{
-        type:'giả mạo'
+        type:'phishing'
     }
 },{
-    route: 'report-cache',
-    name: 'báo cáo nội dung xấu',
+    route: 'report_caches',
+    name: 'Mạo danh',
     color: 'midgray',
     filter:{
-        type:'nội dung xấu'
+        type:'impersonate_fake'
     }
 },{
-    route: 'report-cache',
-    name: 'báo cáo chứa mã độc',
+    route: 'report_caches',
+    name: 'Nội dung xấu',
     color: 'midgray',
     filter:{
-        type:'chứa mã độc'
+        type:'bad_sensitive_content'
     }
 },{
-    route: 'report-cache',
-    name: 'báo cáo khác',
+    route: 'report_caches',
+    name: 'Chứa mã độc',
     color: 'midgray',
     filter:{
-        type:'khác'
+        type:'dangerous_link'
+    }
+},{
+    route: 'report_caches',
+    name: 'Khác',
+    color: 'midgray',
+    filter:{
+        type:'other'
     }
 }
 ].map((view) => {
@@ -230,7 +237,7 @@ export default class CustomViewsService extends Service {
         return VIEW_COLORS;
     }
     get forReportCache(){
-        return this.viewList.filter(view => view.route === 'report-cache');
+        return this.viewList.filter(view => view.route === 'report_caches');
     }
     get forPosts() {
         return this.viewList.filter(view => view.route === 'posts');

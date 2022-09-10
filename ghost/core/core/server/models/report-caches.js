@@ -5,7 +5,7 @@ const ghostBookshelf = require('./base');
 let ReportCache;
 
 ReportCache = ghostBookshelf.Model.extend({ 
-    tableName: 'report_cache'
+    tableName: 'report_caches'
 })
 module.exports = {
     ReportCache : ghostBookshelf.model('ReportCache', ReportCache)

@@ -97,6 +97,7 @@ projectFilesBackup
 .tmp
 
 /core/server/data/export/exported*
+/content/data/*
 /content/tmp/*
 /content/logs/*
 /content/settings/*
@@ -107,6 +108,7 @@ projectFilesBackup
 /content/public/*
 /content/adapters/storage/**/*
 /content/adapters/scheduling/**/*
+
 !/README.md
 !/content/**/README.md
 

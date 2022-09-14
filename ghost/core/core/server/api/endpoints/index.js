@@ -43,6 +43,9 @@ module.exports = {
     get reportcache(){
         return shared.pipeline(require('./report-caches'), localUtils);
     },
+    get reporturl(){
+        return shared.pipeline(require('./report-url'), localUtils);
+    },
     get userscore(){
         return shared.pipeline(require('./userscore'), localUtils);
     },

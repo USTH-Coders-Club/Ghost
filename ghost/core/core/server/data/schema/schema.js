@@ -778,12 +778,17 @@ module.exports = {
         report_link :{type: 'string', maxlength: 191, nullable: false},
         type:{type: 'string', maxlength: 191, nullable: false},
         content:{type: 'text', maxlength: 1000000000, fieldtype: 'long', nullable: true},
-        country:{type: 'string', maxlength: 50, nullable: true},
-        created_date :{type: 'dateTime', nullable: false},
+        created_date :{type: 'dateTime', nullable: false}
     },
     user_score:{
         id:{type: 'string', maxlength: 24, nullable: false, primary: true},
         email:{type: 'string', maxlength: 191, nullable: false,unique:true},
         score:{type: 'integer', nullable: false},        
+    },
+    report_url:{
+        id: {type: 'string', maxlength: 24, nullable: false, primary: true},
+        report_link:{type: 'string', maxlength: 191, nullable: false},
+        type:{type: 'string', maxlength: 191, nullable: false},
+        created_date :{type: 'dateTime', nullable: false}
     }
 };

@@ -1,11 +1,11 @@
 const tpl = require('@tryghost/tpl');
 const errors = require('@tryghost/errors');
 const models = require('../../models');
-const allowedIncludes = ['id','report_link','type','content','created_date'];
+const allowedIncludes = ['id','report_link','type','created_date'];
 
 
 module.exports = {
-    docName: 'report_caches',
+    docName: 'report_url',
     browse:{
         options: [
         'include',   
@@ -23,7 +23,7 @@ module.exports = {
     },
     permissions: false,
         query(frame) {
-            return models.ReportCache.findPage(frame.options);
+            return models.ReportUrl.findPage(frame.options);
             }
     },
     destroy:{
@@ -45,11 +45,11 @@ module.exports = {
         query(frame) {
             frame.options.require = true;
 
-            return models.ReportCache.destroy(frame.options)
+            return models.ReportUrl.destroy(frame.options)
             .then(() => null) // console error message if not found
-            .catch(models.ReportCache.NotFoundError, () => {
+            .catch(models.ReportUrl.NotFoundError, () => {
                 return Promise.reject(new errors.NotFoundError({
-                    message: tpl(messages.reportcacheNotFound)}
+                    message: tpl(messages.reporturlNotFound)}
                  ))}
             );
          }
@@ -70,7 +70,7 @@ module.exports = {
         permissions:false
         ,
         query(frame) {
-            return models.ReportCache.add(frame.data.reportcache[0], frame.options);
+            return models.ReportUrl.add(frame.data.reporturl[0], frame.options);
         }
 
     },
@@ -92,14 +92,13 @@ module.exports = {
         },
         permissions:false,
         async query(frame) {
-            return models.ReportCache.edit(frame.data.reportcache[0], frame.options);
+            return models.ReportUrl.edit(frame.data.reporturl[0], frame.options);
         }
     },
     read: {
         options: [
             'include',
-            'fields',
-
+            'fields'
         ],
         data: [
             'id',
@@ -113,9 +112,8 @@ module.exports = {
             }
         },
         permissions : false,
-        
         query(frame) {
-            return models.ReportCache.findOne(frame.data, frame.options)
+            return models.ReportUrl.findOne(frame.data, frame.options)
                 .then((model) => {
                     if (!model) {
                         throw new errors.NotFoundError();
@@ -124,6 +122,7 @@ module.exports = {
                 });
         }
     }
-}
+
+    }
 
 

@@ -69,3 +69,6 @@ typings/
 .DS_Store
 
 # Ghost Custom
+# Ghost DB file
+*.db
+*.db-journal

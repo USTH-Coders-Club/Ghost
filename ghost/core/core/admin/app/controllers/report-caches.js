@@ -100,4 +100,13 @@ export default class ReportCacheController extends Controller {
     changeOrder(order) {
         this.set('order', get(order, 'value'));
     }
+    /**
+     * 
+     * @param {*} reportcache 
+     * @note save report to db and 
+     */
+    @action
+    savereport(reportcache){
+
+    }
 }

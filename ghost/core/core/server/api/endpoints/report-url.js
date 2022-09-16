@@ -70,7 +70,7 @@ module.exports = {
         permissions:false
         ,
         query(frame) {
-            return models.ReportUrl.add(frame.data.reporturl[0], frame.options);
+            return models.ReportUrl.add(frame.data.report_url[0], frame.options);
         }
 
     },
@@ -98,7 +98,8 @@ module.exports = {
     read: {
         options: [
             'include',
-            'fields'
+            'fields',
+            'order'
         ],
         data: [
             'id',

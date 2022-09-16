@@ -1,0 +1,67 @@
+<!--Accepts: 
+    selectedType: String, avaiableTypes: [], onTypeChange: callback,
+    selectedDateRange: String, availableDateRanges: [], onDateRangeChange: callback
+ -->
+
+<div class="gh-reportfilter view-actions-bottom-row" ...attributes>
+    
+    <div class="gh-reportfilter-menu gh-reportfilter-type {{if @selectedType.value "gh-reportfilter-selected"}}" data-test-type-select="true">
+        <PowerSelect
+            @selected={{@selectedType}}
+            @options={{@availableTypes}}
+            @searchEnabled={{false}}
+            @onChange={{@onTypeChange}}
+            @triggerComponent="gh-power-select/trigger"
+            @triggerClass="gh-reportfilter-menu-trigger"
+            @dropdownClass="gh-reportfilter-menu-dropdown"
+            @matchTriggerWidth={{false}}
+            as |type|
+        >
+            {{#if type.name}}{{type.name}}{{else}}<span class="red">Unknown type</span>{{/if}}
+        </PowerSelect>
+    </div>
+
+    {{#unless @currentUser.isContributor}}
+        <div class="gh-reportfilter-menu gh-reportfilter-daterange {{if @selectedVisibility.value "gh-reportfilter-selected"}}" data-test-visibility-select="true">
+            <PowerSelect
+                @selected={{@selectedDateRange}}
+                @options={{@availableDateRanges}}
+                @searchEnabled={{false}}
+                @onChange={{@onDateRangeChange}}
+                @triggerComponent="gh-power-select/trigger"
+                @triggerClass="gh-reportfilter-menu-trigger"
+                @dropdownClass="gh-reportfilter-menu-dropdown"
+                @matchTriggerWidth={{false}}
+                as |visibility|
+            >
+                {{#if visibility.name}}{{visibility.name}}{{else}}<span class="red">Unknown visibility</span>{{/if}}
+            </PowerSelect>
+        </div>
+    {{/unless}}
+
+    {{#if this.showCustomViewManagement}}
+        <div class="dropdown gh-reportfilter-menu gh-reportfilter-actions">
+            {{#if this.customViews.activeView}}
+                <button
+                    type="button"
+                    class="gh-reportfilter-menu-trigger gh-reportfilter-button gh-btn-save-view"
+                    title="Edit current view..."
+                    data-test-button="edit-view"
+                    {{on "click" this.customViews.editView}}
+                >
+                    {{svg-jar "edit-view"}}
+                </button>
+            {{else}}
+                <button
+                    type="button"
+                    class="gh-reportfilter-menu-trigger gh-reportfilter-button gh-btn-save-view"
+                    title="Save as view..."
+                    data-test-button="add-view"
+                    {{on "click" this.customViews.editView}}
+                >
+                    {{svg-jar "add-view"}}
+                </button>
+            {{/if}}
+        </div>
+    {{/if}}
+</div>

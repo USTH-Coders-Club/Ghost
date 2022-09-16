@@ -28,20 +28,21 @@ const TYPES = [{
     value: 'other'
 }];
 
-const ACCESS = [{
-    name: 'Default',
-    value: null
-}];
-
-const ORDERS = [{
+const DATERANGES = [{
     name: 'Newest',
     value: null
 }, {
     name: 'Oldest',
-    value: 'published_at asc'
+    value: 'oldest'
 }, {
     name: 'Recently updated',
-    value: 'updated_at desc'
+    value: 'recent'
+}, {
+    name: 'Last week',
+    value: 'week'
+}, {
+    name: 'Last month',
+    value: 'month'
 }];
 @classic
 export default class ReportCacheController extends Controller {
@@ -50,16 +51,15 @@ export default class ReportCacheController extends Controller {
     @service store;
     @service settings;
     @service config;
-    queryParams = ['type', 'access', 'order'];
+    queryParams = ['type', 'date_range'];
 
     availableTypes = null;
-    
-    availableOrders = null;
+    availableDateRanges = null;
+
     init() {
         super.init(...arguments);
         this.availableTypes = TYPES;
-        this.availableAccess = ACCESS;
-        this.availableOrders = ORDERS;
+        this.availableDateRanges = DATERANGES;
         
         this.setProperties(DEFAULT_QUERY_PARAMS.report_caches);
     }
@@ -74,16 +74,10 @@ export default class ReportCacheController extends Controller {
         return types.findBy('value', this.type) || {value: '!unknown'};
     }
 
-    @computed('type')
-    get selectedAccess() {
-        let accesses = this.availableAccess;
-        return accesses.findBy('value', this.type) || {value: '!unknown'};
-    }
-
-    @computed('order')
-    get selectedOrder() {
-        let orders = this.availableOrders;
-        return orders.findBy('value', this.order) || {value: '!unknown'};
+    @computed('date_range')
+    get selectedDateRange() {
+        let date_ranges = this.availableDateRanges;
+        return date_ranges.findBy('value', this.date_range) || {value: '!unknown'};
     }
 
     @action
@@ -92,21 +86,17 @@ export default class ReportCacheController extends Controller {
     }
 
     @action
-    changeAccess(access) {
-        this.set('access', get(access, 'value'));
+    changeDateRange(date_range) {
+        this.set('date_range', get(date_range, 'value'));
     }
 
-    @action
-    changeOrder(order) {
-        this.set('order', get(order, 'value'));
-    }
     /**
      * 
      * @param {*} reportcache 
      * @note save report to db and 
      */
     @action
-    savereport(reportcache){
+    saveReport(reportcache){
 
     }
 }

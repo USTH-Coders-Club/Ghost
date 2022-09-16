@@ -3,6 +3,9 @@ const errors = require('@tryghost/errors');
 const models = require('../../models');
 const allowedIncludes = ['id','report_link','type','created_date'];
 
+const messages = {
+    reportUrlNotFound: 'Report url not found.'
+}
 
 module.exports = {
     docName: 'report_url',
@@ -49,7 +52,7 @@ module.exports = {
             .then(() => null) // console error message if not found
             .catch(models.ReportUrl.NotFoundError, () => {
                 return Promise.reject(new errors.NotFoundError({
-                    message: tpl(messages.reporturlNotFound)}
+                    message: tpl(messages.reportUrlNotFound)}
                  ))}
             );
          }
@@ -117,7 +120,8 @@ module.exports = {
             return models.ReportUrl.findOne(frame.data, frame.options)
                 .then((model) => {
                     if (!model) {
-                        throw new errors.NotFoundError();
+                        throw new errors.NotFoundError({
+                            message: tpl(messages.reportUrlNotFound)});
                     }
                     return model;
                 });

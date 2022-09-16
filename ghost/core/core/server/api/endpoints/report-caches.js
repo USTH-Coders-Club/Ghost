@@ -3,6 +3,9 @@ const errors = require('@tryghost/errors');
 const models = require('../../models');
 const allowedIncludes = ['id','report_link','type','content','created_date'];
 
+const messages = {
+    reportCacheNotFound: 'Report not found.'
+}
 
 module.exports = {
     docName: 'report_caches',
@@ -49,7 +52,7 @@ module.exports = {
             .then(() => null) // console error message if not found
             .catch(models.ReportCache.NotFoundError, () => {
                 return Promise.reject(new errors.NotFoundError({
-                    message: tpl(messages.reportcacheNotFound)}
+                    message: tpl(messages.reportCacheNotFound)}
                  ))}
             );
          }
@@ -118,7 +121,9 @@ module.exports = {
             return models.ReportCache.findOne(frame.data, frame.options)
                 .then((model) => {
                     if (!model) {
-                        throw new errors.NotFoundError();
+                        throw new errors.NotFoundError({
+                            message: tpl(messages.reportCacheNotFound)
+                        });
                     }
                     return model;
                 });

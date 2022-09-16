@@ -3,6 +3,9 @@ const errors = require('@tryghost/errors');
 const models = require('../../models');
 const allowedIncludes = ['id','email','score'];
 
+const messages = {
+    usernotfound: 'User not found.'
+}
 
 module.exports = {
     docName: 'userscore',
@@ -44,7 +47,8 @@ module.exports = {
             return models.UserScore.destroy(frame.options)
             .then(() => null) // console error message if not found
             .catch(models.UserScore.NotFoundError, () => {
-                return Promise.reject(new errors.NotFoundError(
+                return Promise.reject(new errors.NotFoundError({
+                    message: tpl(messages.usernotfound)}
                  ))}
                  );
          }
@@ -113,7 +117,8 @@ module.exports = {
             return models.UserScore.findOne(frame.data, frame.options)
                 .then((model) => {
                     if (!model) {
-                        throw new errors.NotFoundError();
+                        throw new errors.NotFoundError({
+                            message: tpl(messages.usernotfound)});
                     }
                     return model;
                 });

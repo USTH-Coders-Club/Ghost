@@ -64,7 +64,6 @@ export default class SigninController extends Controller.extend(ValidationEngine
                 mainError.context = htmlSafe(mainError.context || '');
 
                 this.set('flowErrors', (mainError.context.string || mainError.message.string));
-                $('#login').find('input').trigger('change');
 
                 if (mainError.type === 'PasswordResetRequiredError') {
                     this.set('passwordResetEmailSent', true);
@@ -77,6 +76,8 @@ export default class SigninController extends Controller.extend(ValidationEngine
                 if (mainError.context.string.match(/password is incorrect/i)) {
                     this.get('signin.errors').add('password', '');
                 }
+
+                $('#login').find('input').trigger('change');
             } else {
                 console.error(error); // eslint-disable-line no-console
                 // Connection errors don't return proper status message, only req.body

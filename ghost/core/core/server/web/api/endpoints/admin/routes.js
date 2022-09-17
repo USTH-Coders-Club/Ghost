@@ -30,7 +30,7 @@ module.exports = function apiRoutes() {
     router.get('/posts/slug/:slug', mw.authAdminApi, http(api.posts.read));
     router.put('/posts/:id', mw.authAdminApi, http(api.posts.edit));
     router.del('/posts/:id', mw.authAdminApi, http(api.posts.destroy));
-    
+
     router.get('/report_caches', mw.authAdminApi, http(api.reportcache.browse));
     router.get('/report_caches/:id', mw.authAdminApi, http(api.reportcache.read));
     router.post('/report_caches', mw.authAdminApi, http(api.reportcache.add));
@@ -40,14 +40,14 @@ module.exports = function apiRoutes() {
     router.get('/report_url/:id', mw.authAdminApi, http(api.reporturl.read));
     router.post('/report_url', mw.authAdminApi, http(api.reporturl.add));
     router.del('/report_url/:id', mw.authAdminApi, http(api.reporturl.destroy));
-    
+
 
     router.get('/report_url', mw.authAdminApi, http(api.reportcache.browse));
     router.post('/report_url', mw.authAdminApi, http(api.reportcache.add));
     router.del('/report_url/:id', mw.authAdminApi, http(api.reportcache.destroy));
 
     router.get('/userscore', mw.authAdminApi, http(api.userscore.browse));
-    router.get('/userscore/email/:email', mw.authAdminApi, http(api.userscore.read));
+    router.get('/userscore/:id', mw.authAdminApi, http(api.userscore.read));
     router.post('/userscore', mw.authAdminApi, http(api.userscore.add));
     router.del('/userscore/:id', mw.authAdminApi, http(api.userscore.destroy));
     router.put('/userscore/:id', mw.authAdminApi, http(api.userscore.edit));
@@ -89,7 +89,7 @@ module.exports = function apiRoutes() {
 
     /** @deprecated This endpoint is part of the old email verification flow for the support email */
     router.get('/settings/members/email', http(api.settings.validateMembersEmailUpdate));
-    
+
     /** @deprecated This endpoint is part of the old email verification flow for the support email */
     router.post('/settings/members/email', mw.authAdminApi, http(api.settings.updateMembersEmail));
 

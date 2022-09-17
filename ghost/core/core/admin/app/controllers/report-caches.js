@@ -60,13 +60,13 @@ export default class ReportCacheController extends Controller {
         super.init(...arguments);
         this.availableTypes = TYPES;
         this.availableDateRanges = DATERANGES;
-        
+
         this.setProperties(DEFAULT_QUERY_PARAMS.report_caches);
     }
 
     @alias('model')
         reportcacheInfinityModel;
-    
+
 
     @computed('type')
     get selectedType() {
@@ -91,12 +91,17 @@ export default class ReportCacheController extends Controller {
     }
 
     /**
-     * 
-     * @param {*} reportcache 
-     * @note save report to db and 
+     *
+     * @param {*} reportcache
+     * @note save report to db and
      */
     @action
-    saveReport(reportcache){
-
+    saveReport(report_caches){
+      let rp_cache =  this.store.queryRecord('report_caches',{id:report_caches.id})
+      return this.store.createRecord('report_url',{
+        report_link : report_caches.report_link,
+        type: report_caches.type,
+        created_date: report_caches.created_date
+      })
     }
 }

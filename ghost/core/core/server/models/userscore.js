@@ -29,6 +29,7 @@ UserScore = ghostBookshelf.Model.extend({
 
         return query.fetch(options);
 }})
+    
 module.exports = {
     UserScore : ghostBookshelf.model('UserScore', UserScore),
 };   

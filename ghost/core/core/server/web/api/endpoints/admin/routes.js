@@ -47,7 +47,7 @@ module.exports = function apiRoutes() {
     router.del('/report_url/:id', mw.authAdminApi, http(api.reportcache.destroy));
 
     router.get('/userscore', mw.authAdminApi, http(api.userscore.browse));
-    router.get('/userscore/:email', mw.authAdminApi, http(api.userscore.read));
+    router.get('/userscore/email/:email', mw.authAdminApi, http(api.userscore.read));
     router.post('/userscore', mw.authAdminApi, http(api.userscore.add));
     router.del('/userscore/:id', mw.authAdminApi, http(api.userscore.destroy));
     router.put('/userscore/:id', mw.authAdminApi, http(api.userscore.edit));

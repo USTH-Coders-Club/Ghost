@@ -12,7 +12,8 @@ module.exports = {
     browse:{
         options: [
         'include',
-        'order'
+        'order',
+        'limit'
     ],
     validation: {
         options: {
@@ -97,10 +98,10 @@ module.exports = {
     read: {
         options: [
             'include',
-            'fields',
-
+            'filter',
+            'fields'
         ],
-        data: [
+        data:[
             'id',
             'email'
         ],

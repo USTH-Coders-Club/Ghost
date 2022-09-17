@@ -2,24 +2,26 @@ import Controller, {inject as controller} from '@ember/controller';
 import classic from 'ember-classic-decorator';
 import {readOnly} from '@ember/object/computed';
 import {inject as service} from '@ember/service';
+
+/* eslint-disable ghost/ember/alias-model-in-controller */
 @classic
-export default class ReportCachesLoadingController extends Controller {
-    @controller('report-caches')
-        ReportCacheController;
+export default class ReportCacheLoadingController extends Controller {
+    @controller('report_caches')
+        reportCachesController;
 
     @service session;
     @service ui;
     @service config;
 
-    @readOnly('ReportCacheController.availableTypes')
+    @readOnly('reportCachesController.availableTypes')
         availableTypes;
 
-    @readOnly('ReportCacheController.selectedType')
+    @readOnly('reportCachesController.selectedType')
         selectedType;
 
-    @readOnly('ReportCacheController.availableOrders')
-        availableOrders;
+    @readOnly('reportCachesController.selectedDateRange')
+        selectedDateRange;
 
-    @readOnly('ReportCacheController.selectedOrder')
-        selectedOrder;
+    @readOnly('reportCachesController.availableDateRanges')
+        availableDateRanges;
 }

@@ -4,7 +4,7 @@
  -->
 
 <div class="gh-reportfilter view-actions-bottom-row" ...attributes>
-    
+
     <div class="gh-reportfilter-menu gh-reportfilter-type {{if @selectedType.value "gh-reportfilter-selected"}}" data-test-type-select="true">
         <PowerSelect
             @selected={{@selectedType}}
@@ -22,7 +22,7 @@
     </div>
 
     {{#unless @currentUser.isContributor}}
-        <div class="gh-reportfilter-menu gh-reportfilter-daterange {{if @selectedVisibility.value "gh-reportfilter-selected"}}" data-test-visibility-select="true">
+        <div class="gh-reportfilter-menu gh-reportfilter-daterange {{if @selectedType.value "gh-reportfilter-selected"}}" data-test-type-select="true">
             <PowerSelect
                 @selected={{@selectedDateRange}}
                 @options={{@availableDateRanges}}

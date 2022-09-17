@@ -6,25 +6,25 @@ import {alias} from '@ember/object/computed';
 import {inject as service} from '@ember/service';
 
 const TYPES = [{
-    name: 'Tất cả',
+    name: 'All',
     value: null
 },{
-    name: 'Lừa đảo',
+    name: 'Scam',
     value: 'scam'
 },{
-    name: 'Giả mạo',
+    name: 'Phishing',
     value: 'phishing'
 },{
-    name: 'Mạo danh',
+    name: 'Impersonate - Fake',
     value: 'impersonate_fake'
 },{
-    name: 'Nội dung xấu',
+    name: 'Bad - Sensitive',
     value: 'bad_sensitive_content'
 },{
-    name: 'Chứa mã độc',
+    name: 'Dangerous',
     value: 'dangerous_link'
 },{
-    name: 'Khác',
+    name: 'Other',
     value: 'other'
 }];
 
@@ -35,7 +35,7 @@ const DATERANGES = [{
     name: 'Oldest',
     value: 'oldest'
 }, {
-    name: 'Recently updated',
+    name: 'Recent',
     value: 'recent'
 }, {
     name: 'Last week',

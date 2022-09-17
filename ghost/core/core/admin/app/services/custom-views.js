@@ -78,42 +78,42 @@ const DEFAULT_VIEWS = [{
 },
 {
     route: 'report_caches',
-    name: 'Lừa đảo',
+    name: 'Scam',
     color: 'midgray',
     filter:{
         type:'scam'
     }
 },{
     route: 'report_caches',
-    name: 'Giả mạo',
+    name: 'Phishing',
     color: 'midgray',
     filter:{
         type:'phishing'
     }
 },{
     route: 'report_caches',
-    name: 'Mạo danh',
+    name: 'Impersonate - Fake',
     color: 'midgray',
     filter:{
         type:'impersonate_fake'
     }
 },{
     route: 'report_caches',
-    name: 'Nội dung xấu',
+    name: 'Bad - Sensitive',
     color: 'midgray',
     filter:{
         type:'bad_sensitive_content'
     }
 },{
     route: 'report_caches',
-    name: 'Chứa mã độc',
+    name: 'Dangerous',
     color: 'midgray',
     filter:{
         type:'dangerous_link'
     }
 },{
     route: 'report_caches',
-    name: 'Khác',
+    name: 'Other',
     color: 'midgray',
     filter:{
         type:'other'

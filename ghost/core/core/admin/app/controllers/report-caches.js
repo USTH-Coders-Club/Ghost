@@ -92,16 +92,16 @@ export default class ReportCacheController extends Controller {
 
     /**
      *
-     * @param {*} reportcache
+     * @param {*} reportcache (ember model)
      * @note save report to db and
      */
     @action
     saveReport(report_caches){
-      let rp_cache =  this.store.queryRecord('report_caches',{id:report_caches.id})
+      let rp_cache =  this.store.queryRecord('report_caches',{id:report_caches.get('id')})
       return this.store.createRecord('report_url',{
-        report_link : report_caches.report_link,
-        type: report_caches.type,
-        created_date: report_caches.created_date
+        report_link : report_caches.get('report_link'),
+        type: report_caches.get('type'),
+        created_date: report_caches.get('created_date')
       })
     }
 }

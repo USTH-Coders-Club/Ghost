@@ -93,7 +93,7 @@ export default class ReportCacheController extends Controller {
     /**
      *
      * @param {*} reportcache (ember model)
-     * @note save report to db and
+     * @note save report to report_url db
      */
     @action
     saveReport(report_caches){

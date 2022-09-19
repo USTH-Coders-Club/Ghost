@@ -4,7 +4,7 @@ export default class NewRoute extends AuthenticatedRoute {
     model(params, transition) {
         let {type: modelName} = params;
 
-        if (!['post','page','report-caches'].includes(modelName)) {
+        if (!['post','page','report_caches'].includes(modelName)) {
             let path = transition.intent.url.replace(/^\//, '');
             return this.replaceWith('error404', {path, status: 404});
         }

@@ -51,7 +51,11 @@ export default class ReportCacheController extends Controller {
     @service store;
     @service settings;
     @service config;
+
     queryParams = ['type', 'date_range'];
+
+    _hasLoadedTypes = false;
+    _hasLoadedDateRanges = false;
 
     availableTypes = null;
     availableDateRanges = null;
@@ -65,7 +69,7 @@ export default class ReportCacheController extends Controller {
     }
 
     @alias('model')
-        reportcacheInfinityModel;
+        reportcachesInfinityModel;
 
 
     @computed('type')
@@ -99,9 +103,9 @@ export default class ReportCacheController extends Controller {
     saveReport(report_caches){
       let rp_cache =  this.store.queryRecord('report_caches',{id:report_caches.get('id')})
       return this.store.createRecord('report_url',{
-        report_link : report_caches.get('report_link'),
-        type: report_caches.get('type'),
-        created_date: report_caches.get('created_date')
+        report_link : rp_cache.get('report_link'),
+        type: rp_cache.get('type'),
+        created_date: rp_cache.get('created_date'),
       })
     }
 }

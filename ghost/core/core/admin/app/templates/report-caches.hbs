@@ -19,6 +19,42 @@
     <section class="view-container">
         <p class="gh-box gh-box-tip">{{svg-jar "idea"}}Bạn có biết: Report endpoint sử dụng 5 từ khóa khác nhau?<br> - Ví dụ điển hình: report-cache, reportcache, ReportCache, report_cache, report_caches.<br>Lần sau đặt tên cho cẩn thận nhé :&#40;</p>
     </section>
+
+    <section class="view-container content-list">
+        <ol class="report-caches-list gh-list {{unless this.reportcachesInfinityModel "no-report-caches"}}">
+            {{#if this.reportcachesInfinityModel}}
+                <li class="gh-list-row header">
+                    <div class="gh-list-header gh-posts-title-header">Title</div>
+                        {{#if (and (not-eq this.settings.membersSignupAccess "none") (not-eq this.settings.editorDefaultEmailRecipients "disabled") (not this.session.user.isContributor) this.feature.emailAnalytics)}}
+                            <div class="gh-list-header gh-posts-sends-header">Sends</div>
+                            <div class="gh-list-header gh-posts-opens-header">Opens</div>
+                        {{/if}}
+                    <div class="gh-list-header gh-posts-status-header">Status</div>
+                </li>
+            {{/if}}
+
+            {{#each reportcachesInfinityModel as |report|}}
+                <GhPostsListItem
+                    @post={{report}}
+                    data-test-post-id={{report.id}} />
+            {{else}}
+            <li class="no-report-caches-box">
+                <div class="no-report-caches">
+                    {{svg-jar "posts-placeholder" class="gh-posts-placeholder"}}
+                    <h4>No posts match the current filter</h4>
+                    <LinkTo @route="posts" @query={{hash type=null author=null tag=null}} class="gh-btn">
+                        <span>Show all posts</span>
+                    </LinkTo>
+                </div>
+            </li>
+            {{/each}}
+        </ol>
+
+        <GhInfinityLoader
+            @infinityModel={{this.reportcachesInfinityModel}}
+            @scrollable=".gh-main"
+            @triggerOffset={{1000}} />
+    </section>
     
     {{outlet}}
 </section>

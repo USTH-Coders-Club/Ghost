@@ -1,0 +1,21 @@
+{{!-- template-lint-disable no-invalid-interactive --}}
+<li class="gh-list-row gh-report-caches-list-item"
+    {{on "mouseover" this.mouseOver}}
+    {{on "mouseleave" this.mouseLeave}}
+    ...attributes
+>
+{{#if (and this.session.user.isContributor )}}
+    <a class="permalink gh-list-data gh-post-list-title" target="_blank" rel="noopener noreferrer">
+        <h3 class="gh-content-entry-title">
+            {{@report_caches.type}} {{svg-jar "external" class="gh-report-caches-list-external"}}
+        </h3>
+            <p>
+                <span class="gh-content-entry-meta">
+                    By <span class="midgrey-l2 fw5">{{report-email-names @report_caches}}</span>
+                    • <span data-tooltip="{{gh-format-report-time @report_caches "D MMM YYYY"}}">{{gh-format-report-time @report_caches.created_date}}</span>
+
+                </span>
+            </p>
+        {{/unless}}
+    </a>
+{{yield}}

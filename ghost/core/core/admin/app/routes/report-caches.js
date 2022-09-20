@@ -8,6 +8,7 @@ import {inject as service} from '@ember/service';
 export default class ReportCachesRoute extends AuthenticatedRoute {
     @service infinity;
     @service router;
+    @service store;
 
     queryParams = {
         type: {refreshModel: true},

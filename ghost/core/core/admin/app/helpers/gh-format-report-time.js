@@ -23,3 +23,4 @@ export default class GhFormatReportTimeHelper extends Helper {
 
         return formatReportTime(timeago, Object.assign({}, options, {timezone: this.settings.get('timezone')}));
     }
+}

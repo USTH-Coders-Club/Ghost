@@ -4,6 +4,7 @@ import {DEFAULT_QUERY_PARAMS} from 'ghost-admin/helpers/reset-query-params';
 import {action, computed, get} from '@ember/object';
 import {alias} from '@ember/object/computed';
 import {inject as service} from '@ember/service';
+import {task} from 'ember-concurrency';
 
 const TYPES = [{
     name: 'All',
@@ -51,6 +52,7 @@ export default class ReportController extends Controller {
     @service store;
     @service settings;
     @service config;
+    @service notifications;
 
     queryParams = ['type', 'date_range'];
 
@@ -100,6 +102,16 @@ export default class ReportController extends Controller {
         this.set('date_range', get(date_range, 'value'));
     }
 
+    @action
+    approve() {
+        this.approveTaskPointer.perform();
+    }
+
+    @action
+    decline() {
+        this.declineTaskPointer.perform();
+    }   
+
     /**
      *
      * @param {*} report (ember model)
@@ -114,4 +126,14 @@ export default class ReportController extends Controller {
         created_date: rp_cache.get('created_date'),
       })
     }
+
+    @task(function* () {
+        alert(1);
+    })
+        approveTask;
+
+    @task(function* () {
+        alert(2);
+    })
+        declineTask;
 }

@@ -7,14 +7,29 @@
     {{#if (and this.session.user)}}
         <a class="gh-list-data gh-post-list-title" >
             <h2 class="gh-content-entry-title">
-                {{@report.type}} {{svg-jar "external" class="gh-post-list-external"}}
+                {{@report.report_link}} {{svg-jar "external" class="gh-post-list-external"}}
             </h2>
-                <p>
-                    <span class="gh-content-entry-meta">
-                        By <span class="midgrey-l2 fw5">{{@report.email}}</span>
-                        • <span data-tooltip="{{gh-format-report-time @report.created_date "D MMM YYYY"}}">{{gh-format-report-time @report.created_date "D MMM YYYY"}}</span>
-                    </span>
-                </p>
+            <p>
+                <span class="gh-content-entry-meta">
+                    By <span class="midgrey-l2 fw5">{{@report.email}}</span>
+                    • <span data-tooltip="{{gh-format-report-time @report.created_date "D MMM YYYY"}}">{{gh-format-report-time @report.created_date "D MMM YYYY"}}</span>
+                </span>
+            </p>
+
+            <p class="gh-content-text">{{@report.content}}</p>
         </a>
+    {{/if}}
+
+    {{#if (and this.session.user)}}
+        <!-- gh-btn gh-btn-red gh-btn-green -->
+        <div class="gh-list-data gh-post-list-recipients">
+            <GhTaskButton @buttonText="Approve" @task={{@approveTask}} @class="gh-btn gh-btn-primary gh-btn-green" data-test-button="approve" />
+        </div>
+
+        <div class="gh-list-data gh-post-list-recipients">
+           <GhTaskButton @buttonText="Decline" @task={{@declineTask}} @class="gh-btn gh-btn-primary gh-btn-red" data-test-button="decline" />   
+        </div>
+
+        
     {{/if}}
 </li>

@@ -753,8 +753,8 @@ input:focus,
     background: var(--dark-main-bg-color);
 }
 
-.gh-posts-list-item:hover,
-.ember-power-select-group .ember-power-select-option[aria-current=true],
+.gh-posts-list-item:hover, .gh-reports-list-item:hover,
+.ember-power-select-group .ember-power-select-option[aria-curreWnt=true],
 .settings-tag .tag-edit-button.active,
 .gh-portal-site-frame-cover {
     background: var(--whitegrey);

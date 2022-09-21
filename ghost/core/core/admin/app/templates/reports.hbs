@@ -17,13 +17,12 @@
     </GhCanvasHeader>
 
     <section class="view-container content-list">
-        <ol class="report-caches-list gh-list {{unless this.reportsInfinityModel "no-reports"}}">
+        <ol class="posts-list gh-list {{unless this.reportsInfinityModel "no-reports"}}">
             {{#if this.reportsInfinityModel}}
                 <li class="gh-list-row header">
                     <div class="gh-list-header gh-posts-title-header">Title</div>
                         {{#if (and (not-eq this.settings.membersSignupAccess "none") (not-eq this.settings.editorDefaultEmailRecipients "disabled") (not this.session.user.isContributor) this.feature.emailAnalytics)}}
-                            <div class="gh-list-header gh-posts-sends-header">Sends</div>
-                            <div class="gh-list-header gh-posts-opens-header">Opens</div>
+                            <div class="gh-list-header gh-posts-sends-header">Judgement</div>
                         {{/if}}
                 </li>
             {{/if}}
@@ -31,6 +30,8 @@
             {{#each this.reportsInfinityModel as |report|}}
             <GhReportsListItem
                 @report={{report}}
+                @approveTask={{this.approveTask}}
+                @declineTask={{this.declineTask}}
                 data-test-report-id={{report.id}} />
             {{else}}
             <li class="no-report-caches-box">

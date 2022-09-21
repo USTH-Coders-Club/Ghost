@@ -3,17 +3,17 @@
     selectedDateRange: String, availableDateRanges: [], onDateRangeChange: callback
  -->
 
-<div class="gh-reportfilter view-actions-bottom-row" ...attributes>
+<div class="gh-contentfilter view-actions-bottom-row" ...attributes>
 
-    <div class="gh-reportfilter-menu gh-reportfilter-type {{if @selectedType.value "gh-reportfilter-selected"}}" data-test-type-select="true">
+    <div class="gh-contentfilter-menu gh-contentfilter-type {{if @selectedType.value "gh-contentfilter-selected"}}" data-test-type-select="true">
         <PowerSelect
             @selected={{@selectedType}}
             @options={{@availableTypes}}
             @searchEnabled={{false}}
             @onChange={{@onTypeChange}}
             @triggerComponent="gh-power-select/trigger"
-            @triggerClass="gh-reportfilter-menu-trigger"
-            @dropdownClass="gh-reportfilter-menu-dropdown"
+            @triggerClass="gh-contentfilter-menu-trigger"
+            @dropdownClass="gh-contentfilter-menu-dropdown"
             @matchTriggerWidth={{false}}
             as |type|
         >
@@ -22,15 +22,15 @@
     </div>
 
     {{#unless @currentUser.isContributor}}
-        <div class="gh-reportfilter-menu gh-reportfilter-daterange {{if @selectedType.value "gh-reportfilter-selected"}}" data-test-type-select="true">
+        <div class="gh-contentfilter-menu gh-contentfilter-daterange {{if @selectedType.value "gh-contentfilter-selected"}}" data-test-type-select="true">
             <PowerSelect
                 @selected={{@selectedDateRange}}
                 @options={{@availableDateRanges}}
                 @searchEnabled={{false}}
                 @onChange={{@onDateRangeChange}}
                 @triggerComponent="gh-power-select/trigger"
-                @triggerClass="gh-reportfilter-menu-trigger"
-                @dropdownClass="gh-reportfilter-menu-dropdown"
+                @triggerClass="gh-contentfilter-menu-trigger"
+                @dropdownClass="gh-contentfilter-menu-dropdown"
                 @matchTriggerWidth={{false}}
                 as |visibility|
             >
@@ -40,11 +40,11 @@
     {{/unless}}
 
     {{#if this.showCustomViewManagement}}
-        <div class="dropdown gh-reportfilter-menu gh-reportfilter-actions">
+        <div class="dropdown gh-contentfilter-menu gh-contentfilter-actions">
             {{#if this.customViews.activeView}}
                 <button
                     type="button"
-                    class="gh-reportfilter-menu-trigger gh-reportfilter-button gh-btn-save-view"
+                    class="gh-contentfilter-menu-trigger gh-contentfilter-button gh-btn-save-view"
                     title="Edit current view..."
                     data-test-button="edit-view"
                     {{on "click" this.customViews.editView}}
@@ -54,7 +54,7 @@
             {{else}}
                 <button
                     type="button"
-                    class="gh-reportfilter-menu-trigger gh-reportfilter-button gh-btn-save-view"
+                    class="gh-contentfilter-menu-trigger gh-contentfilter-button gh-btn-save-view"
                     title="Save as view..."
                     data-test-button="add-view"
                     {{on "click" this.customViews.editView}}

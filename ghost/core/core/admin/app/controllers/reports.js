@@ -71,6 +71,12 @@ export default class ReportController extends Controller {
     @alias('model')
         reportsInfinityModel;
 
+    @computed('type', 'date_range')
+    get showingAll() {
+        let {type, date_range} = this;
+
+        return !type && !date_range;
+    }
 
     @computed('type')
     get selectedType() {

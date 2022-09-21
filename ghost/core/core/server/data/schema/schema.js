@@ -551,7 +551,8 @@ module.exports = {
         updated_by: {type: 'string', maxlength: 24, nullable: true}
     },
     members_labels: {
-        id: {type: 'string', maxlength: 24, nullable: false, primary: true},
+        id: {type: 'string', http://localhost:2368/
+        maxlength: 24, nullable: false, primary: true},
         member_id: {type: 'string', maxlength: 24, nullable: false, references: 'members.id', cascadeDelete: true},
         label_id: {type: 'string', maxlength: 24, nullable: false, references: 'labels.id', cascadeDelete: true},
         sort_order: {type: 'integer', nullable: false, unsigned: true, defaultTo: 0}
@@ -776,6 +777,7 @@ module.exports = {
     report_caches :{
         id: {type: 'string', maxlength: 24, nullable: false, primary: true},
         report_link :{type: 'string', maxlength: 191, nullable: false},
+        email:{type: 'string', maxlength: 191, nullable: false},
         type:{type: 'string', maxlength: 191, nullable: false},
         content:{type: 'text', maxlength: 1000000000, fieldtype: 'long', nullable: true},
         created_date :{type: 'dateTime', nullable: false}

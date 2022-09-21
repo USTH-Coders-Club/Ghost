@@ -18,8 +18,9 @@ export default Model.extend(Comparable,{
     clock: service(),
     settings: service(),
     displayName: 'report',
+    email: attr('string'),
     report_link: attr('string'),
     content: attr('string'),
     type: attr('string'),
-    created_date: attr('string'),
+    created_date: attr('moment-utc'),
 });

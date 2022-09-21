@@ -11,19 +11,6 @@ export default class GhReportsListItemComponent extends Component {
 
   @tracked isHovered = false;
 
-  get scheduledText() {
-      let {reports} = this.args;
-      let text = [];
-
-      let formattedTime = formatPostTime(
-          reports.created_date,
-          {timezone: this.settings.get('timezone'), scheduled: true}
-      );
-      text.push(formattedTime);
-
-      return text.join(' ');
-  }
-
   @action
   mouseOver() {
       this.isHovered = true;

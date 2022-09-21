@@ -35,12 +35,12 @@
             {{else}}
             <li class="no-report-caches-box">
                 <div class="no-report-caches">
+                    {{svg-jar "posts-placeholder" class="gh-posts-placeholder"}}
                     {{#if this.showingAll}}
-                        {{svg-jar "posts-placeholder" class="gh-posts-placeholder"}}
                         <h4>Nothing here...</h4>
                     {{else}}
                         <h4>No reports match the current filter</h4>
-                        <LinkTo @route="reports" @query={{hash type=null author=null tag=null}} class="gh-btn">
+                        <LinkTo @route="reports" @query={{hash type=null date_range=null}} class="gh-btn">
                             <span>Show all reports</span>
                         </LinkTo>
                     {{/if}}

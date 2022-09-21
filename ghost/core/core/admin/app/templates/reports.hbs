@@ -25,7 +25,6 @@
                             <div class="gh-list-header gh-posts-sends-header">Sends</div>
                             <div class="gh-list-header gh-posts-opens-header">Opens</div>
                         {{/if}}
-                    <div class="gh-list-header gh-posts-status-header">Status</div>
                 </li>
             {{/if}}
 
@@ -36,11 +35,15 @@
             {{else}}
             <li class="no-report-caches-box">
                 <div class="no-report-caches">
-                    {{svg-jar "posts-placeholder" class="gh-posts-placeholder"}}
-                    <h4>No posts match the current filter</h4>
-                    <LinkTo @route="posts" @query={{hash type=null author=null tag=null}} class="gh-btn">
-                        <span>Show all posts</span>
-                    </LinkTo>
+                    {{#if this.showingAll}}
+                        {{svg-jar "posts-placeholder" class="gh-posts-placeholder"}}
+                        <h4>Nothing here...</h4>
+                    {{else}}
+                        <h4>No reports match the current filter</h4>
+                        <LinkTo @route="reports" @query={{hash type=null author=null tag=null}} class="gh-btn">
+                            <span>Show all reports</span>
+                        </LinkTo>
+                    {{/if}}
                 </div>
             </li>
             {{/each}}

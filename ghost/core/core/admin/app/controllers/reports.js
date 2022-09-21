@@ -110,21 +110,22 @@ export default class ReportController extends Controller {
     @action
     decline() {
         this.declineTaskPointer.perform();
-    }   
+    }
 
-    /**
-     *
-     * @param {*} report (ember model)
-     * @note save report to reporturl db
-     */
-    @action
-    saveReport(){
-      let rp_cache =  this.store.queryRecord('report',{id:'632a72d4aa13c9345d4b3d7d'})
+    saveReport(report){
+      let rp_cache =  this.store.queryRecord('report',{id:report.id})
       return this.store.createRecord('reporturl',{
-        report_link : rp_cache.get('report_link'),
-        type: rp_cache.get('type'),
-        created_date: rp_cache.get('created_date'),
+        report_link : rp_cache.report_link,
+        type: rp_cache.type,
+        created_date: rp_cache.created_date,
       })
+    }
+    deleteReport(){
+      return this.store.Delete('report',{id:this.reportsInfinityModel.id})
+    }
+    checkExistingUserEmail(){
+      let alluser = this.store.findAll('userscore')
+
     }
 
     @task(function* () {
@@ -132,8 +133,4 @@ export default class ReportController extends Controller {
     })
         approveTask;
 
-    @task(function* () {
-        alert(2);
-    })
-        declineTask;
 }

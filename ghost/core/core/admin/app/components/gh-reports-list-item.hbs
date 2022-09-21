@@ -23,13 +23,13 @@
     {{#if (and this.session.user)}}
         <!-- gh-btn gh-btn-red gh-btn-green -->
         <div class="gh-list-data gh-post-list-recipients">
-            <GhTaskButton @buttonText="Approve" @task={{@approveTask}} @class="gh-btn gh-btn-primary gh-btn-green" data-test-button="approve" />
+            <GhTaskButton @buttonText="Approve" @task={{this.approveTask}} @class="gh-btn gh-btn-primary gh-btn-green" data-test-button="approve" />
         </div>
 
         <div class="gh-list-data gh-post-list-recipients">
-           <GhTaskButton @buttonText="Decline" @task={{@declineTask}} @class="gh-btn gh-btn-primary gh-btn-red" data-test-button="decline" />   
+           <GhTaskButton @buttonText="Decline" @task={{this.declineTask}} @class="gh-btn gh-btn-primary gh-btn-red" data-test-button="decline" />
         </div>
 
-        
+
     {{/if}}
 </li>

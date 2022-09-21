@@ -4,7 +4,7 @@ import {formatPostTime} from 'ghost-admin/helpers/gh-format-post-time';
 import {inject as service} from '@ember/service';
 import {tracked} from '@glimmer/tracking';
 
-export default class GhReportListItemComponent extends Component {
+export default class GhReportsListItemComponent extends Component {
   @service feature;
   @service session;
   @service settings;

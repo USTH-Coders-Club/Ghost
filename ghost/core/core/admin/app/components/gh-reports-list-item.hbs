@@ -1,5 +1,5 @@
 {{!-- template-lint-disable no-invalid-interactive --}}
-<li class="gh-list-row gh-report-list-item"
+<li class="gh-list-row gh-reports-list-item"
     {{on "mouseover" this.mouseOver}}
     {{on "mouseleave" this.mouseLeave}}
     ...attributes
@@ -7,12 +7,12 @@
     {{#if this.session.user.isContributor}}
         <a class="permalink gh-list-data gh-post-list-title" target="_blank" rel="noopener noreferrer">
             <h3 class="gh-content-entry-title">
-                {{@reports.type}} {{svg-jar "external" class="gh-report-caches-list-external"}}
+                {{@report.type}} {{svg-jar "external" class="gh-report-caches-list-external"}}
             </h3>
                 <p>
                     <span class="gh-content-entry-meta">
-                        By <span class="midgrey-l2 fw5">{{report-email-names @reports}}</span>
-                        • <span data-tooltip="{{gh-format-report-time @reports "D MMM YYYY"}}">{{gh-format-report-time @reports.created_date}}</span>
+                        By <span class="midgrey-l2 fw5">{{report-email-names @report}}</span>
+                        • <span data-tooltip="{{gh-format-report-time @report.created_at "D MMM YYYY"}}">{{gh-format-report-time @report.created_at}}</span>
                     </span>
                 </p>
         </a>

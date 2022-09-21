@@ -30,7 +30,7 @@
             {{/if}}
 
             {{#each this.reportsInfinityModel as |report|}}
-            <GhPostsListItem
+            <GhReportsListItem
                 @report={{report}}
                 data-test-report-id={{report.id}} />
             {{else}}

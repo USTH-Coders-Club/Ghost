@@ -11,15 +11,13 @@ import {equal, filterBy, reads} from '@ember/object/computed';
 import {on} from '@ember/object/evented';
 import {inject as service} from '@ember/service';
 const {Comparable} = Ember;
-export default Model.extend(Comparable, ValidationEngine,{
+export default Model.extend(Comparable,{
     config: service(),
     feature: service(),
     ghostPaths: service(),
     clock: service(),
     settings: service(),
-    displayName: 'reports',
-    validationType: 'reports',
-    id: attr('string'),
+    displayName: 'reporturl',
     report_link: attr('string'),
     email: attr('string'),
     type: attr('string'),

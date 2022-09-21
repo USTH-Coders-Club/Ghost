@@ -4,7 +4,7 @@ const ghostBookshelf = require('./base');
 
 let ReportUrl;
 
-ReportUrl = ghostBookshelf.Model.extend({ 
+ReportUrl = ghostBookshelf.Model.extend({
     tableName: 'report_url',
      orderDefaultOptions: function orderDefaultOptions() {
         return {
@@ -14,4 +14,4 @@ ReportUrl = ghostBookshelf.Model.extend({
 })
 module.exports = {
     ReportUrl : ghostBookshelf.model('ReportUrl', ReportUrl)
-};   
+};

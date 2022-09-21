@@ -103,12 +103,12 @@ export default class ReportController extends Controller {
     /**
      *
      * @param {*} report (ember model)
-     * @note save report to report_url db
+     * @note save report to reporturl db
      */
     @action
-    saveReport(reports){
-      let rp_cache =  this.store.queryRecord('reports',{id:reports.get('id')})
-      return this.store.createRecord('report_url',{
+    saveReport(){
+      let rp_cache =  this.store.queryRecord('report',{id:'632a72d4aa13c9345d4b3d7d'})
+      return this.store.createRecord('reporturl',{
         report_link : rp_cache.get('report_link'),
         type: rp_cache.get('type'),
         created_date: rp_cache.get('created_date'),

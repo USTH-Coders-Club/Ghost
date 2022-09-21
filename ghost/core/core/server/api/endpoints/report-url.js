@@ -8,7 +8,7 @@ const messages = {
 }
 
 module.exports = {
-    docName: 'report_url',
+    docName: 'reporturl',
     browse:{
         options: [
         'include',   
@@ -73,7 +73,7 @@ module.exports = {
         permissions:false
         ,
         query(frame) {
-            return models.ReportUrl.add(frame.data.report_url[0], frame.options);
+            return models.ReportUrl.add(frame.data.reporturl[0], frame.options);
         }
 
     },

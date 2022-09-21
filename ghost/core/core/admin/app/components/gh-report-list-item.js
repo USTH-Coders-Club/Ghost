@@ -4,7 +4,7 @@ import {formatPostTime} from 'ghost-admin/helpers/gh-format-post-time';
 import {inject as service} from '@ember/service';
 import {tracked} from '@glimmer/tracking';
 
-export default class GhReportCachesListItemComponent extends Component {
+export default class GhReportListItemComponent extends Component {
   @service feature;
   @service session;
   @service settings;
@@ -12,11 +12,11 @@ export default class GhReportCachesListItemComponent extends Component {
   @tracked isHovered = false;
 
   get scheduledText() {
-      let {report_caches} = this.args;
+      let {reports} = this.args;
       let text = [];
 
       let formattedTime = formatPostTime(
-          report_caches.created_date,
+          reports.created_date,
           {timezone: this.settings.get('timezone'), scheduled: true}
       );
       text.push(formattedTime);

@@ -31,10 +31,10 @@ module.exports = function apiRoutes() {
     router.put('/posts/:id', mw.authAdminApi, http(api.posts.edit));
     router.del('/posts/:id', mw.authAdminApi, http(api.posts.destroy));
 
-    router.get('/report_caches', mw.authAdminApi, http(api.reportcache.browse));
-    router.get('/report_caches/:id', mw.authAdminApi, http(api.reportcache.read));
-    router.post('/report_caches', mw.authAdminApi, http(api.reportcache.add));
-    router.del('/report_caches/:id', mw.authAdminApi, http(api.reportcache.destroy));
+    router.get('/reports', mw.authAdminApi, http(api.report.browse));
+    router.get('/reports/:id', mw.authAdminApi, http(api.report.read));
+    router.post('/reports', mw.authAdminApi, http(api.report.add));
+    router.del('/reports/:id', mw.authAdminApi, http(api.report.destroy));
 
     router.get('/report_url', mw.authAdminApi, http(api.reporturl.browse));
     router.get('/report_url/:id', mw.authAdminApi, http(api.reporturl.read));
@@ -42,9 +42,9 @@ module.exports = function apiRoutes() {
     router.del('/report_url/:id', mw.authAdminApi, http(api.reporturl.destroy));
 
 
-    router.get('/report_url', mw.authAdminApi, http(api.reportcache.browse));
-    router.post('/report_url', mw.authAdminApi, http(api.reportcache.add));
-    router.del('/report_url/:id', mw.authAdminApi, http(api.reportcache.destroy));
+    router.get('/report_url', mw.authAdminApi, http(api.report.browse));
+    router.post('/report_url', mw.authAdminApi, http(api.report.add));
+    router.del('/report_url/:id', mw.authAdminApi, http(api.report.destroy));
 
     router.get('/userscore', mw.authAdminApi, http(api.userscore.browse));
     router.get('/userscore/:id', mw.authAdminApi, http(api.userscore.read));

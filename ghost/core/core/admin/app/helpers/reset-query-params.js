@@ -15,7 +15,7 @@ export const DEFAULT_QUERY_PARAMS = {
         tag: null,
         order: null
     },
-    report_caches: {
+    reports: {
         type: null,
         date_range: null,
     },

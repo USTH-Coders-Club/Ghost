@@ -5,17 +5,17 @@ import {assign} from '@ember/polyfills';
 import {isBlank} from '@ember/utils';
 import {inject as service} from '@ember/service';
 
-export default class ReportCachesRoute extends AuthenticatedRoute {
+export default class ReportsRoute extends AuthenticatedRoute {
     @service infinity;
     @service router;
     @service store;
 
     queryParams = {
         type: {refreshModel: true},
-        date_range: {refreshModel: true},
+        created_date: {refreshModel: true},
     };
 
-    modelName = 'report_caches';
+    modelName = 'report';
     perPage = 30;
 
     constructor() {
@@ -26,7 +26,7 @@ export default class ReportCachesRoute extends AuthenticatedRoute {
         // browser history entry
         // see https://github.com/TryGhost/Ghost/issues/11057
         this.router.on('routeWillChange', (transition) => {
-            if (transition.to && (this.routeName === 'report_caches')) {
+            if (transition.to && (this.routeName === 'reports')) {
                 let toThisRoute = transition.to.find(route => route.name === this.routeName);
                 if (transition.from && transition.from.name === this.routeName && toThisRoute) {
                     transition.method('replace');
@@ -38,29 +38,16 @@ export default class ReportCachesRoute extends AuthenticatedRoute {
     model(params) {
         const user = this.session.user;
         let queryParams = {};
-        let filterParams = {type: params.type, date_range: params.date_range};
+        let filterParams = {type: params.type, created_date: params.created_date};
         let paginationParams = {
             perPageParam: 'limit',
             totalPagesParam: 'meta.pagination.pages'
         };
 
-        assign(filterParams, this._getTypeFilters(params.type));
-        assign(filterParams, params.date_range);
+      //  assign(filterParams, this._getTypeFilters(params.type));
+      //  assign(filterParams, params.created_date);
 
-        if (params.type === 'featured') {
-            filterParams.featured = true;
-        }
 
-        if (user.isAuthor) {
-            // authors can only view their own posts
-            filterParams.authors = user.slug;
-        } else if (user.isContributor) {
-            // Contributors can only view their own draft posts
-            filterParams.authors = user.slug;
-            // filterParams.status = 'draft';
-        } else if (params.author) {
-            filterParams.authors = params.author;
-        }
 
         let filter = this._filterString(filterParams);
         if (!isBlank(filter)) {
@@ -74,6 +61,7 @@ export default class ReportCachesRoute extends AuthenticatedRoute {
         let perPage = this.perPage;
         let paginationSettings = assign({perPage, startingPage: 1}, paginationParams, queryParams);
 
+
         return this.infinity.model(this.modelName, paginationSettings);
     }
 
@@ -81,17 +69,6 @@ export default class ReportCachesRoute extends AuthenticatedRoute {
     setupController(controller) {
         super.setupController(...arguments);
 
-        if (!this.session.user.isAuthorOrContributor && !controller._hasLoadedTypes) {
-            this.store.query('type', {limit: 'all'}).then(() => {
-                controller._hasLoadedTypes = true;
-            });
-        }
-
-        if (!this.session.user.isAuthorOrContributor && !controller._hasLoadedDateRanges) {
-            this.store.query('date_range', {limit: 'all'}).then(() => {
-                controller._hasLoadedDateRanges = true;
-            });
-        }
     }
 
     @action

@@ -9,7 +9,7 @@ export default class GhReportfilterComponent extends Component {
 
     get showCustomViewManagement() {
         let isAdmin = get(this.args.currentUser || {}, 'isAdmin');
-        let onPostsScreen = this.router.currentRouteName === 'report_caches';
+        let onPostsScreen = this.router.currentRouteName === 'reports';
         let isDefaultView = this.customViews?.activeView?.isDefault;
         let hasFilter = this.args.selectedType.value
             || this.args.selectedDateRange.value

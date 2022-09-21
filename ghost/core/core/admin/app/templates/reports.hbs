@@ -1,7 +1,7 @@
 <section class="gh-canvas">
     <GhCanvasHeader class="gh-canvas-header break tablet post-header">
-        <GhCustomViewTitle @title={{if this.session.user.isContributor (concat this.config.blogTitle " Report") "Reports"}} @query={{reset-query-params "report_caches"}} />
-    
+        <GhCustomViewTitle @title={{if this.session.user.isContributor (concat this.config.blogTitle " Report") "Reports"}} @query={{reset-query-params "reports"}} />
+
         <section class="view-actions">
             <!-- Component for sorting report cache query -->
             <GhReportfilter
@@ -16,13 +16,9 @@
         </section>
     </GhCanvasHeader>
 
-    <section class="view-container">
-        <p class="gh-box gh-box-tip">{{svg-jar "idea"}}Bạn có biết: Report endpoint sử dụng 5 từ khóa khác nhau?<br> - Ví dụ điển hình: report-cache, reportcache, ReportCache, report_cache, report_caches.<br>Lần sau đặt tên cho cẩn thận nhé :&#40;</p>
-    </section>
-
     <section class="view-container content-list">
-        <ol class="report-caches-list gh-list {{unless this.reportcachesInfinityModel "no-report-caches"}}">
-            {{#if this.reportcachesInfinityModel}}
+        <ol class="report-caches-list gh-list {{unless this.reportsInfinityModel "no-reports"}}">
+            {{#if this.reportsInfinityModel}}
                 <li class="gh-list-row header">
                     <div class="gh-list-header gh-posts-title-header">Title</div>
                         {{#if (and (not-eq this.settings.membersSignupAccess "none") (not-eq this.settings.editorDefaultEmailRecipients "disabled") (not this.session.user.isContributor) this.feature.emailAnalytics)}}
@@ -33,10 +29,10 @@
                 </li>
             {{/if}}
 
-            {{#each reportcachesInfinityModel as |report|}}
-                <GhPostsListItem
-                    @post={{report}}
-                    data-test-post-id={{report.id}} />
+            {{#each this.reportsInfinityModel as |report|}}
+            <GhPostsListItem
+                @report={{report}}
+                data-test-report-id={{report.id}} />
             {{else}}
             <li class="no-report-caches-box">
                 <div class="no-report-caches">
@@ -51,10 +47,10 @@
         </ol>
 
         <GhInfinityLoader
-            @infinityModel={{this.reportcachesInfinityModel}}
+            @infinityModel={{this.reportsInfinityModel}}
             @scrollable=".gh-main"
             @triggerOffset={{1000}} />
     </section>
-    
+
     {{outlet}}
 </section>

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
-describe('Unit | Route | report_caches', function() {
+describe('Unit | Route | reports', function() {
   setupTest();
 
   it('exists', function() {

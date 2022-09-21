@@ -2,9 +2,9 @@ const _ = require('lodash');
 const ghostBookshelf = require('./base');
 
 
-let ReportCache;
+let report;
 
-ReportCache = ghostBookshelf.Model.extend({ 
+report = ghostBookshelf.Model.extend({
     tableName: 'report_caches',
     orderDefaultOptions: function orderDefaultOptions() {
         return {
@@ -13,6 +13,6 @@ ReportCache = ghostBookshelf.Model.extend({
     }
 })
 module.exports = {
-    ReportCache : ghostBookshelf.model('ReportCache', ReportCache)
-   
-};   
+    report : ghostBookshelf.model('report', report)
+
+};

@@ -11,18 +11,15 @@ import {equal, filterBy, reads} from '@ember/object/computed';
 import {on} from '@ember/object/evented';
 import {inject as service} from '@ember/service';
 const {Comparable} = Ember;
-export default Model.extend(Comparable, ValidationEngine,{
+export default Model.extend(Comparable,{
     config: service(),
     feature: service(),
     ghostPaths: service(),
     clock: service(),
     settings: service(),
-    displayName: 'report_caches',
-    validationType: 'report_caches',
-    id: attr('string'),
+    displayName: 'report',
     report_link: attr('string'),
-    email: attr('string'),
     content: attr('string'),
     type: attr('string'),
-    created_date: attr('moment'),
+    created_date: attr('string'),
 });

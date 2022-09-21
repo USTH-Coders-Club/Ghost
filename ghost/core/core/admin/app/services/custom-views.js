@@ -77,42 +77,42 @@ const DEFAULT_VIEWS = [{
     }
 },
 {
-    route: 'report_caches',
+    route: 'reports',
     name: 'Scam',
     color: 'midgray',
     filter:{
         type:'scam'
     }
 },{
-    route: 'report_caches',
+    route: 'reports',
     name: 'Phishing',
     color: 'midgray',
     filter:{
         type:'phishing'
     }
 },{
-    route: 'report_caches',
+    route: 'reports',
     name: 'Impersonate - Fake',
     color: 'midgray',
     filter:{
         type:'impersonate_fake'
     }
 },{
-    route: 'report_caches',
+    route: 'reports',
     name: 'Bad - Sensitive',
     color: 'midgray',
     filter:{
         type:'bad_sensitive_content'
     }
 },{
-    route: 'report_caches',
+    route: 'reports',
     name: 'Dangerous',
     color: 'midgray',
     filter:{
         type:'dangerous_link'
     }
 },{
-    route: 'report_caches',
+    route: 'reports',
     name: 'Other',
     color: 'midgray',
     filter:{
@@ -236,8 +236,8 @@ export default class CustomViewsService extends Service {
     get availableColors() {
         return VIEW_COLORS;
     }
-    get forReportCache(){
-        return this.viewList.filter(view => view.route === 'report_caches');
+    get forreport(){
+        return this.viewList.filter(view => view.route === 'reports');
     }
     get forPosts() {
         return this.viewList.filter(view => view.route === 'posts');

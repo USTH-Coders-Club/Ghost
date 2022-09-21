@@ -5,23 +5,23 @@ import {inject as service} from '@ember/service';
 
 /* eslint-disable ghost/ember/alias-model-in-controller */
 @classic
-export default class ReportCachesLoadingController extends Controller {
-    @controller('report_caches')
-        reportCachesController;
+export default class ReportsLoadingController extends Controller {
+    @controller('reports')
+        reportsController;
 
     @service session;
     @service ui;
     @service config;
 
-    @readOnly('reportCachesController.availableTypes')
+    @readOnly('reportsController.availableTypes')
         availableTypes;
 
-    @readOnly('reportCachesController.selectedType')
+    @readOnly('reportsController.selectedType')
         selectedType;
 
-    @readOnly('reportCachesController.selectedDateRange')
+    @readOnly('reportsController.selectedDateRange')
         selectedDateRange;
 
-    @readOnly('reportCachesController.availableDateRanges')
+    @readOnly('reportsController.availableDateRanges')
         availableDateRanges;
 }

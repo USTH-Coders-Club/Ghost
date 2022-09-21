@@ -45,7 +45,7 @@ const DATERANGES = [{
     value: 'month'
 }];
 @classic
-export default class ReportCacheController extends Controller {
+export default class ReportController extends Controller {
     @service feature;
     @service session;
     @service store;
@@ -65,11 +65,11 @@ export default class ReportCacheController extends Controller {
         this.availableTypes = TYPES;
         this.availableDateRanges = DATERANGES;
 
-        this.setProperties(DEFAULT_QUERY_PARAMS.report_caches);
+        this.setProperties(DEFAULT_QUERY_PARAMS.reports);
     }
 
     @alias('model')
-        reportcachesInfinityModel;
+        reportsInfinityModel;
 
 
     @computed('type')
@@ -96,12 +96,12 @@ export default class ReportCacheController extends Controller {
 
     /**
      *
-     * @param {*} reportcache (ember model)
+     * @param {*} report (ember model)
      * @note save report to report_url db
      */
     @action
-    saveReport(report_caches){
-      let rp_cache =  this.store.queryRecord('report_caches',{id:report_caches.get('id')})
+    saveReport(reports){
+      let rp_cache =  this.store.queryRecord('reports',{id:reports.get('id')})
       return this.store.createRecord('report_url',{
         report_link : rp_cache.get('report_link'),
         type: rp_cache.get('type'),

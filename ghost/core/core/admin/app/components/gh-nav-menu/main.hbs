@@ -79,13 +79,13 @@
                         {{/if}}
                     </li>
                     <li class="gh-nav-list-new relative">
-                        <GhLinkToCustomViewsIndex @route="report_caches" @query={{reset-query-params "report_caches"}} data-test-nav="report_caches">{{svg-jar "posts"}}Reports</GhLinkToCustomViewsIndex>                      
+                        <GhLinkToCustomViewsIndex @route="reports" @query={{reset-query-params "reports"}} data-test-nav="reports">{{svg-jar "posts"}}Reports</GhLinkToCustomViewsIndex>                      
                         {{#if this.session.user.isAuthorOrContributor}}
-                            {{#if this.customViews.forReportCache }}
+                            {{#if this.customViews.forreport }}
                                 <ul class="gh-nav-view-list">
-                                    {{#each this.customViews.forReportCache as |view|}}
+                                    {{#each this.customViews.forreport as |view|}}
                                         <li>
-                                            <LinkTo @route="report_caches" @query={{reset-query-params "report_caches" view.filter}} data-test-nav-custom="{{view.route}}-{{view.name}}" title="{{view.name}}">
+                                            <LinkTo @route="reports" @query={{reset-query-params "reports" view.filter}} data-test-nav-custom="{{view.route}}-{{view.name}}" title="{{view.name}}">
                                                 <span class="gh-nav-viewname">{{view.name}}</span>
                                                 <span class="flex items-center svg-{{view.color}}">
                                                     {{#unless view.icon}}
@@ -98,15 +98,15 @@
                                 </ul>
                             {{/if}}
                         {{else}}
-                            {{#if this.customViews.forReportCache}}
+                            {{#if this.customViews.forreport}}
                                 <button type="button" class="gh-nav-button-expand {{if this.navigation.settings.expanded.report "expanded"}}" {{on "click" (fn this.navigation.toggleExpansion "report")}} aria-label="{{if this.navigation.settings.expanded.report "Collapse custom report types" "Expand custom report types"}}">
                                     {{svg-jar (if this.navigation.settings.expanded.report "arrow-down-stroke" "arrow-right-stroke")}}
                                 </button>
                                 {{#liquid-if this.navigation.settings.expanded.report}}
                                     <ul class="gh-nav-view-list">
-                                        {{#each this.customViews.forReportCache as |view|}}
+                                        {{#each this.customViews.forreport as |view|}}
                                             <li>
-                                                <LinkTo @route="report_caches" @query={{reset-query-params "report_caches" view.filter}} data-test-nav-custom="{{view.route}}-{{view.name}}" title="{{view.name}}">
+                                                <LinkTo @route="reports" @query={{reset-query-params "reports" view.filter}} data-test-nav-custom="{{view.route}}-{{view.name}}" title="{{view.name}}">
                                                     <span class="gh-nav-viewname">{{view.name}}</span>
                                                     <span class="flex items-center svg-{{view.color}}">
                                                         {{#unless view.icon}}

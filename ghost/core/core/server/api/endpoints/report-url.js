@@ -8,10 +8,10 @@ const messages = {
 }
 
 module.exports = {
-    docName: 'reporturl',
+    docName: 'reporturls',
     browse:{
         options: [
-        'include',   
+        'include',
         'order',
         'fields',
         'limit',
@@ -38,7 +38,7 @@ module.exports = {
         validation: {
             options: {
                 include: {values: allowedIncludes},
-                
+
                 id: {
                     required: true
                 }
@@ -73,7 +73,7 @@ module.exports = {
         permissions:false
         ,
         query(frame) {
-            return models.ReportUrl.add(frame.data.reporturl[0], frame.options);
+            return models.ReportUrl.add(frame.data.reporturls[0], frame.options);
         }
 
     },
@@ -95,7 +95,7 @@ module.exports = {
         },
         permissions:false,
         async query(frame) {
-            return models.ReportUrl.edit(frame.data.reporturl[0], frame.options);
+            return models.ReportUrl.edit(frame.data.reporturls[0], frame.options);
         }
     },
     read: {
@@ -129,5 +129,3 @@ module.exports = {
     }
 
     }
-
-

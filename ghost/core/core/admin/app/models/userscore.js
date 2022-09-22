@@ -17,8 +17,7 @@ export default Model.extend(Comparable,{
     ghostPaths: service(),
     clock: service(),
     settings: service(),
-    displayName: 'reporturl',
-    report_link: attr('string'),
-    type: attr('string'),
-    created_date: attr('moment-utc'),
+    displayName: 'userscore',
+    email: attr('string'),
+    score: attr('number')
 });

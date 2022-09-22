@@ -112,21 +112,6 @@ export default class ReportController extends Controller {
         this.declineTaskPointer.perform();
     }
 
-    saveReport(report){
-      let rp_cache =  this.store.queryRecord('report',{id:report.id})
-      return this.store.createRecord('reporturl',{
-        report_link : rp_cache.report_link,
-        type: rp_cache.type,
-        created_date: rp_cache.created_date,
-      })
-    }
-    deleteReport(){
-      return this.store.Delete('report',{id:this.reportsInfinityModel.id})
-    }
-    checkExistingUserEmail(){
-      let alluser = this.store.findAll('userscore')
-
-    }
 
     @task(function* () {
         alert(1);

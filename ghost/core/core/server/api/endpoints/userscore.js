@@ -8,7 +8,7 @@ const messages = {
 }
 
 module.exports = {
-    docName: 'userscore',
+    docName: 'userscores',
     browse:{
         options: [
         'include',
@@ -36,7 +36,7 @@ module.exports = {
         validation: {
             options: {
                 include: {values: allowedIncludes},
-                
+
                 id: {
                     required: true
                 }
@@ -70,7 +70,7 @@ module.exports = {
         permissions:false
         ,
         query(frame) {
-            return models.UserScore.add(frame.data.userscore[0], frame.options);
+            return models.UserScore.add(frame.data.userscores[0], frame.options);
         }
 
     },
@@ -92,7 +92,7 @@ module.exports = {
         },
         permissions:false,
         async query(frame) {
-            return models.UserScore.edit(frame.data.userscore[0], frame.options);
+            return models.UserScore.edit(frame.data.userscores[0], frame.options);
         }
     },
     read: {
@@ -113,7 +113,7 @@ module.exports = {
             }
         },
         permissions : false,
-        
+
         query(frame) {
             return models.UserScore.findOne(frame.data, frame.options)
                 .then((model) => {
@@ -126,4 +126,3 @@ module.exports = {
         }
     }
 }
-

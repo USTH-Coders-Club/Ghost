@@ -41,16 +41,12 @@ module.exports = function apiRoutes() {
     router.post('/reporturls', mw.authAdminApi, http(api.reporturl.add));
     router.del('/reporturls/:id', mw.authAdminApi, http(api.reporturl.destroy));
 
-
-    router.get('/reporturl', mw.authAdminApi, http(api.report.browse));
-    router.post('/reporturl', mw.authAdminApi, http(api.report.add));
-    router.del('/reporturl/:id', mw.authAdminApi, http(api.report.destroy));
-
-    router.get('/userscore', mw.authAdminApi, http(api.userscore.browse));
-    router.get('/userscore/:id', mw.authAdminApi, http(api.userscore.read));
-    router.post('/userscore', mw.authAdminApi, http(api.userscore.add));
-    router.del('/userscore/:id', mw.authAdminApi, http(api.userscore.destroy));
-    router.put('/userscore/:id', mw.authAdminApi, http(api.userscore.edit));
+    router.get('/userscores', mw.authAdminApi, http(api.userscore.browse));
+    router.get('/userscores/:id', mw.authAdminApi, http(api.userscore.read));
+    router.get('/userscores/:email', mw.authAdminApi, http(api.userscore.read));
+    router.post('/userscores', mw.authAdminApi, http(api.userscore.add));
+    router.del('/userscores/:id', mw.authAdminApi, http(api.userscore.destroy));
+    router.put('/userscores/:id', mw.authAdminApi, http(api.userscore.edit));
 
     router.put('/comments/:id', mw.authAdminApi, http(api.comments.edit));
 

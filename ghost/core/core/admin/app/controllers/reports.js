@@ -112,10 +112,4 @@ export default class ReportController extends Controller {
         this.declineTaskPointer.perform();
     }
 
-
-    @task(function* () {
-        alert(1);
-    })
-        approveTask;
-
 }

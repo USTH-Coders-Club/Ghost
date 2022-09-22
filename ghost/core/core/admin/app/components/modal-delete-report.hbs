@@ -1,0 +1,19 @@
+<header class="modal-header" data-test-modal="delete-user">
+    <h1>Are you sure you want to delete this report?</h1>
+</header>
+<a class="close" href="" role="button" title="Close" {{action "closeModal"}}>{{svg-jar "close"}}<span class="hidden">Close</span></a>
+<div class="modal-body">
+        <p>
+            this report will be permanently deleted
+        </p>
+</div>
+<div class="modal-footer">
+    <button class="gh-btn" data-test-button="cancel-delete-report" type="button" {{action "closeModal"}}>
+        <span>Cancel</span>
+    </button>
+    <GhTaskButton @buttonText="Delete report"
+        @successText="Deleted"
+        @task={{this.deleteReport}}
+        @class="gh-btn gh-btn-red gh-btn-icon"
+        data-test-button="confirm-delete-report" />
+</div>

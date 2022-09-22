@@ -14,6 +14,9 @@ export const AVAILABLE_EVENTS = [
     {event: 'post.tag.attached', name: 'Tag added to post', group: 'Posts'},
     {event: 'post.tag.detached', name: 'Tag removed from post', group: 'Posts'},
 
+    // GROUPNAME: Reports
+    {event: 'report.added', name: 'Report created', group: 'Reports'},
+    {event: 'report.deleted', name: 'Report deleted', group: 'Reports'},
     // GROUPNAME: Pages
     {event: 'page.added', name: 'Page created', group: 'Pages'},
     {event: 'page.deleted', name: 'Page deleted', group: 'Pages'},

@@ -112,4 +112,18 @@ export default class ReportController extends Controller {
         this.declineTaskPointer.perform();
     }
 
+    @task(function* () {
+          let {report} = this.args;
+          try{
+          yield report.destroyRecord()
+          yield timeout(1000)
+          alert("succesfully")
+          this.isExisted = false;
+          this.notifications.showAlert("successfully add report url");
+        } catch(error){
+          this.notifications.showAlert("failed to add report url");
+        }
+
+      })
+          deleteReport;
 }

@@ -21,9 +21,8 @@
             {{#if this.reportsInfinityModel}}
                 <li class="gh-list-row header">
                     <div class="gh-list-header gh-posts-title-header">Title</div>
-                        {{#if (and (not-eq this.settings.membersSignupAccess "none") (not-eq this.settings.editorDefaultEmailRecipients "disabled") (not this.session.user.isContributor) this.feature.emailAnalytics)}}
-                            <div class="gh-list-header gh-posts-sends-header">Judgement</div>
-                        {{/if}}
+                    <div class="gh-list-header gh-posts-sends-header"></div>
+                    <div class="gh-list-header gh-posts-sends-header"></div>
                 </li>
             {{/if}}
 

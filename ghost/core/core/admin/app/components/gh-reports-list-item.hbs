@@ -9,8 +9,11 @@
 
         <a class="gh-list-data gh-post-list-title" >
             <h2 class="gh-content-entry-title">
-                {{@report.report_link}} {{svg-jar "external" class="gh-post-list-external"}}
+                {{@report.report_link}}
             </h2>
+             <h3 class="gh-content-entry-title">
+                {{@report.type}}
+            </h3>
             <p>
                 <span class="gh-content-entry-meta">
                     By <span class="midgrey-l2 fw5">{{@report.email}}</span>
@@ -23,12 +26,30 @@
 
         <!-- gh-btn gh-btn-red gh-btn-green -->
         <div class="gh-list-data gh-post-list-recipients">
-            <GhTaskButton @buttonText="Approve" @task={{this.approveTask}} @class="gh-btn gh-btn-primary gh-btn-green" data-test-button="approve" />
+            <GhTaskButton @buttonText="Approve"
+                          @task={{this.approveTask}}
+                          @class="gh-btn gh-btn-primary gh-btn-green"
+                          @successText="done"
+                          @runningText="Processing..."
+                          data-test-button="approve" />
         </div>
 
         <div class="gh-list-data gh-post-list-recipients">
-           <GhTaskButton @buttonText="Decline" @task={{this.declineTask}} @class="gh-btn gh-btn-primary gh-btn-red" data-test-button="decline" />
+            <GhTaskButton @buttonText="Decline"
+                          @task={{this.toggleDeleteReportModalOn}}
+                          @class="gh-btn gh-btn-primary gh-btn-red"
+                          @successText=" "
+                          @runningText="Processing..."
+                           data-test-button="decline" />
         </div>
+        {{#if this.showDeleteReportModal}}
+            <GhFullscreenModal @modal="delete-report"
+                @model={{@report}}
+                @confirm={{action (perform this.deleteReport)}}
+                @close={{action "toggleDeleteReportModalOff"}}
+                @modifier="action wide" />
+        {{/if}}
+
    {{/if}}
  </li>
 {{/if}}

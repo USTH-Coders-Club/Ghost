@@ -13,7 +13,8 @@ module.exports = {
         options: [
         'include',
         'order',
-        'limit'
+        'limit',
+        'filter'
     ],
     validation: {
         options: {

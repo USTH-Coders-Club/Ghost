@@ -81,6 +81,11 @@ module.exports = {
             'include',
             'id'
         ],
+        data:[
+            'id',
+            'email',
+            'score'
+        ],
         validation: {
             options: {
                 include: {

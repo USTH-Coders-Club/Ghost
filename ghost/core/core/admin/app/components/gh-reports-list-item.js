@@ -15,6 +15,7 @@ export default class GhReportsListItemComponent extends Component{
   @service notifications;
   @service utils;
   @service config;
+  @service ajax;
 
 
   @tracked showDeleteReportModal=false;
@@ -39,24 +40,61 @@ export default class GhReportsListItemComponent extends Component{
   })
   toggleDeleteReportModalOn;
 
+  saveReportUrl(){
+    let {report} = this.args;
+    try{
+    let url = this.store.createRecord('reporturl',{
+      id:report.id,
+      report_link : report.report_link,
+      type: report.type,
+      created_date: report.created_date,
+    });
+      url.save();
+      this.notifications.showAlert("Succesfully add report url",{dalayed:true,type: 'success'});
+      return true
+    }catch(error){
+      this.notifications.showAlert("Failed to add report url",{dalayed:true,type: 'error'});
+      return false;
+      }
+  }
+  UpdateUser(){
+    let {report} = this.args;
+    let user = this.store.queryRecord('userscore',{filter:'email:'+report.email}).then(function(user) {
+     let userid = user.get('id');
+    let score = user.get('score') + 1;
+      user.set('score',score)
+      user.save()
+    }).catch(function(error){
+    return undefined
+});
+}
+  createUser(){
+    let {report} = this.args;
+    let newuser = this.store.createRecord('userscore',{
+      email : report.email,
+      score: 0
+    });
+      newuser.save();
+  }
+
+
   @task(function* () {
       let {report} = this.args;
       try{
-      let url = this.store.createRecord('reporturl',{
-        id:report.id,
-        report_link : report.report_link,
-        type: report.type,
-        created_date: report.created_date,
-      });
-        url.save();
-        yield report.destroyRecord();
-        this.isExisted = false;
-        this.notifications.showAlert("Succesfully add report url",{dalayed:true,type: 'success'});
-        return true;
-      } catch(error){
-        this.notifications.showAlert("Failed to add report url",{dalayed:true,type: 'error'});
+        this.saveReportUrl();
+          timeout(1000) }
+          catch(error){
+            console.log(error)
+          } finally{
+            yield report.destroyRecord();
+            yield timeout(1000)
+            this.isExisted = false;
+            if(this.UpdateUser() == undefined){
+             timeout(1000)
+             this.createUser();
+          }
+          }
 
-      }
 
   })
       approveTask;

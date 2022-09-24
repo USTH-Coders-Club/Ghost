@@ -40,7 +40,8 @@ module.exports = function (environment) {
         '@sentry/ember': {
             disablePerformance: true,
             sentry: {}
-        }
+        },
+        ghostadmin_key :'79802700-f240-44ed-9ae5-95025ff6907d'
     };
 
     if (environment === 'development') {

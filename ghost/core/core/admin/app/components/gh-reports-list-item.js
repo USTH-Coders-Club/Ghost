@@ -6,7 +6,8 @@ import {inject as service} from '@ember/service';
 import {tracked} from '@glimmer/tracking';
 import classic from 'ember-classic-decorator';
 import {task,timeout} from 'ember-concurrency';
-
+import config from 'ghost-admin/config/environment';
+//require('dotenv/config');
 export default class GhReportsListItemComponent extends Component{
   @service feature;
   @service session;
@@ -39,7 +40,24 @@ export default class GhReportsListItemComponent extends Component{
       return true;
   })
   toggleDeleteReportModalOn;
-
+  pushToPublicDb(){
+    let {report} = this.args
+    const response =  this.ajax.post("http://222.255.214.9:5000/v2/approve-report", {
+        data: JSON.stringify({
+    "ghostadmin_key": config.ghostadmin_key,
+    "email": report.email,
+    "report_link": report.report_link,
+    "type": report.type}),
+        processData: false,
+        contentType: 'application/json'
+    });
+    return response
+//
+// "ghostadmin_key": process.env.GHOSTADMIN_KEY,
+// "email": report.email,
+// "report_link": report.report_link,
+// "type": report.type
+  }
   saveReportUrl(){
     let {report} = this.args;
     try{
@@ -82,7 +100,7 @@ export default class GhReportsListItemComponent extends Component{
       let {report} = this.args;
       try{
         this.saveReportUrl();
-          timeout(1000) }
+        timeout(1000) }
           catch(error){
             console.log(error)
           } finally{
@@ -90,11 +108,19 @@ export default class GhReportsListItemComponent extends Component{
             yield timeout(1000)
             this.isExisted = false;
             if(this.UpdateUser() == undefined){
-             timeout(1000)
+            yield this.createUser();
+            yield timeout(1000)
              this.createUser();
           }
           }
+          this.pushToPublicDb().then((response) =>{
+            if (response.status == 202){
+                console(response.message)}
+            else{
+              console.log(response.message)
+            }
 
+          });
 
   })
       approveTask;
@@ -105,10 +131,10 @@ export default class GhReportsListItemComponent extends Component{
             yield report.destroyRecord()
             yield timeout(1000)
             this.isExisted = false;
-            this.notifications.showAlert("Succesfully delete report url",{dalayed:true,type: 'success'});
+            this.notifications.showAlert("Succesfully delete report",{dalayed:true,type: 'success'});
             return true;
           } catch(error){
-            this.notifications.showAlert("Fail to add report url",{dalayed:true,type: 'error'});
+            this.notifications.showAlert("Fail to delete report ",{dalayed:true,type: 'error'});
           }
         })
       deleteReport;

@@ -1,6 +1,6 @@
 /* eslint-env node */
 'use strict';
-
+require('dotenv').config();
 module.exports = function (environment) {
     let ENV = {
         modulePrefix: 'ghost-admin',
@@ -41,7 +41,7 @@ module.exports = function (environment) {
             disablePerformance: true,
             sentry: {}
         },
-        ghostadmin_key :'79802700-f240-44ed-9ae5-95025ff6907d'
+        ghostadmin_key : process.env.GHOSTADMIN_KEY
     };
 
     if (environment === 'development') {

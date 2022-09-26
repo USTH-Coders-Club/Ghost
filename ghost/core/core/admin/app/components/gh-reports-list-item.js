@@ -85,14 +85,14 @@ export default class GhReportsListItemComponent extends Component{
     }).catch(function(error){
       if(error){
         console.log(error)
-        return false }
+        return undefined }
 });
 }
   createUser(){
     let {report} = this.args;
     let newuser = this.store.createRecord('userscore',{
       email : report.email,
-      score: 0
+      score: 1
     });
       newuser.save();
   }
@@ -109,7 +109,7 @@ export default class GhReportsListItemComponent extends Component{
             yield report.destroyRecord();
             yield timeout(1000)
             this.isExisted = false;
-            if(this.UpdateUser() == false){
+            if(this.UpdateUser() == undefined){
             setTimeout(this.createUser(),2000);
           }
           this.pushToPublicDb().then((response) =>{

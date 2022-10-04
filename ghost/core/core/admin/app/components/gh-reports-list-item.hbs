@@ -11,9 +11,50 @@
 
             <h2 class="gh-content-entry-title">{{@report.report_link}}</h2>
             <div class="flex items-center">
-            <span class="gh-content-status-published nowrap" title="{{@report.type}}">
-              {{@report.type}}
-            </span>
+              <section class="view-actions">
+                <span class="dropdown">
+                  <GhDropdownButton  @dropdownName="user-actions-menu-{{@report.id}}" @classNames="gh-content-status-published nowrap gh-btn" title="{{@report.type}}">
+                    {{#if this.defaultType }}
+                      {{@report.type}}
+
+                    {{else}}
+                      {{this.type}}
+                    {{/if}}
+                  </GhDropdownButton>
+                  <GhDropdown @name="user-actions-menu-{{@report.id}}" @tagName="ul" @classNames="dropdown-menu gh-content-status-published nowrap">
+                      <li>
+                          <button class="delete gh-content-status-published nowrap" data-test-delete-button type="button" {{action "toggleScamProperties"}}>
+                              Scam
+                          </button>
+                      </li>
+                      <li>
+                          <button class="delete gh-content-status-published nowrap" data-test-delete-button type="button" {{action "togglePhishingProperties"}}>
+                              Phishing
+                          </button>
+                      </li>
+                      <li>
+                          <button class="delete gh-content-status-published nowrap" data-test-delete-button type="button" {{action "toggleImpersonateFakeProperties"}}>
+                              impersonate fake
+                          </button>
+                      </li>
+                      <li>
+                          <button class="delete gh-content-status-published nowrap" data-test-delete-button type="button" {{action "toggleBadSensitiveContentProperties"}}>
+                              bad sensitive content
+                          </button>
+                      </li>
+                      <li>
+                          <button class="delete gh-content-status-published nowrap" data-test-delete-button type="button" {{action "toggleDangerousLinkProperties"}}>
+                              Dangerous Link
+                          </button>
+                      </li>
+                      <li>
+                          <button class="delete gh-content-status-published nowrap" data-test-delete-button type="button" {{action "toggleOtherProperties"}}>
+                              Other
+                            </button>
+                         </li>
+                  </GhDropdown>
+                </span>
+              </section>
             </div>
             <p>
                 <span class="gh-content-entry-meta">

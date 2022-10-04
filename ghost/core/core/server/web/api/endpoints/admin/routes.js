@@ -35,6 +35,7 @@ module.exports = function apiRoutes() {
     router.get('/reports/:id', mw.authAdminApi, http(api.report.read));
     router.post('/reports', mw.authAdminApi, http(api.report.add));
     router.del('/reports/:id', mw.authAdminApi, http(api.report.destroy));
+    router.put('/reports/:id', mw.authAdminApi, http(api.report.edit));
 
     router.get('/reporturls', mw.authAdminApi, http(api.reporturl.browse));
     router.get('/reporturls/:id', mw.authAdminApi, http(api.reporturl.read));

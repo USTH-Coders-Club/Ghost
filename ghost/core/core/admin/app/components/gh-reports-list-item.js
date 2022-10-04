@@ -19,6 +19,8 @@ export default class GhReportsListItemComponent extends Component{
   @service ajax;
 
 
+  @tracked defaultType = true;
+  @tracked type = null;
   @tracked showDeleteReportModal=false;
   @tracked isHovered = false;
   @tracked isExisted = true;
@@ -35,11 +37,13 @@ export default class GhReportsListItemComponent extends Component{
   mouseLeave() {
       this.isHovered = false;
   }
+
   @task(function* (){
       this.showDeleteReportModal=true;
       return true;
   })
   toggleDeleteReportModalOn;
+
   pushToPublicDb(){
     let {report} = this.args
     const response =  this.ajax.post("http://222.255.214.9:5000/v2/approve-report", {
@@ -136,4 +140,76 @@ export default class GhReportsListItemComponent extends Component{
           }
         })
       deleteReport;
+      @action
+      toggleScamProperties(){
+          let report = this.args;
+          let report_sample = this.store.findRecord('report',report.id).then(function(report_sample) {
+           report_sample.type='scam';
+           report_sample.save();
+         }).catch(function(error){
+              console.log(error)
+      })
+      this.defaultType=false;
+      this.type='scam';
+      }
+      @action
+      togglePhishingProperties(){
+          let {report} = this.args;
+          let report_sample = this.store.findRecord('report',report.id).then(function(report_sample) {
+           report_sample.type='phishing';
+           report_sample.save();
+         }).catch(function(error){
+              console.log(error)
+      })
+          this.defaultType=false;
+          this.type='phishing';
+      }
+      @action
+      toggleImpersonateFakeProperties(){
+          let {report} = this.args;
+          let report_sample = this.store.findRecord('report',report.id).then(function(report_sample) {
+           report_sample.type='impersonate_fake';
+           report_sample.save();
+         }).catch(function(error){
+              console.log(error)
+      })
+          this.defaultType=false;
+          this.type='impersonate_fake';
+      }
+      @action
+      toggleBadSensitiveContentProperties(){
+          let {report} = this.args;
+          let report_sample = this.store.findRecord('report',report.id).then(function(report_sample) {
+           report_sample.type='bad_sensitive_content';
+           report_sample.save();
+         }).catch(function(error){
+              console.log(error)
+      })
+          this.defaultType=false;
+          this.type='bad_sensitive_content';
+      }
+      @action
+      toggleDangerousLinkProperties(){
+          let {report} = this.args;
+          let report_sample = this.store.findRecord('report',report.id).then(function(report_sample) {
+           report_sample.type='dangerous_link';
+           report_sample.save();
+         }).catch(function(error){
+              console.log(error)
+      })
+          this.defaultType=false;
+          this.type='dangerous_link';
+      }
+      @action
+      toggleOtherProperties(){
+          let {report} = this.args;
+          let report_sample = this.store.findRecord('report',report.id).then(function(report_sample) {
+           report_sample.type='other';
+           report_sample.save();
+         }).catch(function(error){
+              console.log(error)
+      })
+          this.defaultType=false;
+          this.type='other';
+      }
 }
